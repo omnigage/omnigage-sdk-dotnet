@@ -70,7 +70,7 @@ namespace UnitTests
             var response = File.ReadAllText("Serialized/UtilTestsCreate.json");
 
             mockHttp.When(HttpMethod.Post, "http://localhost/api/articles")
-                .Respond(System.Net.HttpStatusCode.OK, "application/json", response);
+                .Respond(System.Net.HttpStatusCode.Created, "application/json", response);
 
             var client = mockHttp.ToHttpClient();
             client.BaseAddress = new Uri("http://localhost/api/");
@@ -78,6 +78,28 @@ namespace UnitTests
             await fixture.Create(client);
 
             Assert.AreEqual(fixture.Id, "1");
+        }
+
+        [Test]
+        async public Task TestUpdate()
+        {
+            var mockHttp = new MockHttpMessageHandler();
+            var response = File.ReadAllText("Serialized/UtilTestsCreate.json");
+
+            mockHttp.When(HttpMethod.Post, "http://localhost/api/articles")
+                .Respond(System.Net.HttpStatusCode.Created, "application/json", response);
+
+            mockHttp.When(HttpMethod.Patch, "http://localhost/api/articles/*")
+                .Respond(System.Net.HttpStatusCode.Accepted, "application/json", response);
+
+            var client = mockHttp.ToHttpClient();
+            client.BaseAddress = new Uri("http://localhost/api/");
+
+            await fixture.Create(client);
+
+            Assert.AreEqual(fixture.Id, "1");
+
+            await fixture.Update(client);
         }
     }
 }
