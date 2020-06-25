@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "omnigage", "sdk\omnigage.csproj", "{861F2C9B-BD12-4BDE-91EB-922F99689943}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "omnigage", "src\omnigage.csproj", "{861F2C9B-BD12-4BDE-91EB-922F99689943}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
