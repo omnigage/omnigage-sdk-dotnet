@@ -3,7 +3,7 @@ using Omnigage.Auth;
 
 namespace UnitTests
 {
-    public class Tests
+    public class AuthTests
     {
         [Test]
         public void TestProps()
