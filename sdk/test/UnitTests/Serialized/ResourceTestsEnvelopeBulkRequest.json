@@ -1,0 +1,1 @@
+﻿{"data":[{"type":"envelopes","attributes":{"phone-number":"+11111111111","meta":{"first-name":"Michael","last-name":"Morgan"}},"relationships":{"engagement":{"data":{"id":"1","type":"engagements"}}}}],"included":[{"id":"1","type":"engagements","attributes":{"name":"Example","direction":"outbound","status":"scheduled"}}]}
