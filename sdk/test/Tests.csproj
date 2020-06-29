@@ -16,11 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\omnigage.csproj" />
+    <ProjectReference Include="..\src\omnigage.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-      <Content Include="Serialized\**">
+      <Content Include="UnitTests\Serialized\**">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
   </ItemGroup>

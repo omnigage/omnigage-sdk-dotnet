@@ -52,14 +52,14 @@ namespace UnitTests
         [Test]
         public void TestToString()
         {
-            string body = File.ReadAllText("Serialized/UtilTestsToString.json");
+            string body = File.ReadAllText("UnitTests/Serialized/UtilTestsToString.json");
             Assert.AreEqual(fixture.ToString(), body);
         }
 
         [Test]
         public void TestSerialize()
         {
-            string body = File.ReadAllText("Serialized/UtilTestsToString.json");
+            string body = File.ReadAllText("UnitTests/Serialized/UtilTestsToString.json");
             Assert.AreEqual(fixture.Serialize(), body);
         }
 
@@ -67,7 +67,7 @@ namespace UnitTests
         async public Task TestCreate()
         {
             var mockHttp = new MockHttpMessageHandler();
-            var response = File.ReadAllText("Serialized/UtilTestsCreate.json");
+            var response = File.ReadAllText("UnitTests/Serialized/UtilTestsCreate.json");
 
             mockHttp.When(HttpMethod.Post, "http://localhost/api/articles")
                 .Respond(System.Net.HttpStatusCode.Created, "application/json", response);
@@ -84,7 +84,7 @@ namespace UnitTests
         async public Task TestUpdate()
         {
             var mockHttp = new MockHttpMessageHandler();
-            var response = File.ReadAllText("Serialized/UtilTestsCreate.json");
+            var response = File.ReadAllText("UnitTests/Serialized/UtilTestsCreate.json");
 
             mockHttp.When(HttpMethod.Post, "http://localhost/api/articles")
                 .Respond(System.Net.HttpStatusCode.Created, "application/json", response);

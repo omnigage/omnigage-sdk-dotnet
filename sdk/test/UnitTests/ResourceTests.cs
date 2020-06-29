@@ -15,10 +15,10 @@ namespace UnitTests
         async public Task TestVoiceEngagement()
         {
             var mockHttp = new MockHttpMessageHandler();
-            var engagementResponse = File.ReadAllText("Serialized/ResourceTestsEngagementResponse.json");
-            var activityResponse = File.ReadAllText("Serialized/ResourceTestsActivityResponse.json");
-            var triggerResponse = File.ReadAllText("Serialized/ResourceTestsTriggerResponse.json");
-            var envelopeRequest = File.ReadAllText("Serialized/ResourceTestsEnvelopeBulkRequest.json");
+            var engagementResponse = File.ReadAllText("UnitTests/Serialized/ResourceTestsEngagementResponse.json");
+            var activityResponse = File.ReadAllText("UnitTests/Serialized/ResourceTestsActivityResponse.json");
+            var triggerResponse = File.ReadAllText("UnitTests/Serialized/ResourceTestsTriggerResponse.json");
+            var envelopeRequest = File.ReadAllText("UnitTests/Serialized/ResourceTestsEnvelopeBulkRequest.json");
 
             mockHttp.When(HttpMethod.Post, "http://localhost/api/engagements")
                 .Respond(System.Net.HttpStatusCode.Created, "application/json", engagementResponse);
