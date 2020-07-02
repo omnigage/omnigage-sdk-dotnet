@@ -14,9 +14,76 @@ using Omnigage.Util;
 namespace Omnigage.Resources
 {
     /// <summary>
+    /// Resource: `/calls` - https://omnigage.docs.apiary.io/#reference/call-resources/call-collection
+    /// </summary>
+    public class CallResource : Adapter
+    {
+        public const string DIAL = "dial";
+        public const string HANGUP = "hangup";
+        public const string ANSWER = "answer";
+        public const string DECLINE = "decline";
+        public const string HOLD = "hold";
+        public const string RECORD = "record";
+        public const string PLAY = "play";
+        public const string PLAY_DROP = "play-drop";
+        public const string VOICEMAIL_DROP = "voicemail-drop";
+        public const string TRANSFER = "transfer";
+        public const string CONFERENCE = "conference";
+
+        public override string Type { get; } = "calls";
+
+        public string From { get; set; }
+
+        public string To { get; set; }
+
+        public string Action { get; set; }
+
+        public string Status { get; set; }
+
+        public string Direction { get; set; }
+
+        public string Kind { get; set; }
+
+        public string Callback { get; set; }
+
+        [JsonProperty(propertyName: "meta_prop")]
+        public Dictionary<string, string> Meta;
+
+        [JsonProperty(propertyName: "started-at")]
+        public string StartedAt { get; set; }
+
+        [JsonProperty(propertyName: "finished-at")]
+        public string FinishedAt { get; set; }
+
+        [JsonProperty(propertyName: "created-at")]
+        public string CreatedAt { get; set; }
+
+        [JsonProperty(propertyName: "updated-at")]
+        public string UpdatedAt { get; set; }
+
+        [JsonProperty(propertyName: "caller-id")]
+        public CallerIdResource CallerId;
+
+        [JsonProperty(propertyName: "parent-call")]
+        public CallResource ParentCall;
+
+        public EnvelopeResource Envelope;
+
+        [JsonProperty(propertyName: "voice-template")]
+        public VoiceTemplateResource VoiceTemplate;
+
+        public override string Serialize()
+        {
+            string serialized = base.Serialize();
+
+            return serialized.Replace("meta_prop", "meta");
+        }
+    }
+
+    /// <summary>
     /// Resource: `/voice-templates` - https://omnigage.docs.apiary.io/#reference/call-resources/voice-template
     /// </summary>
-    public class VoiceTemplateModel : Adapter
+    public class VoiceTemplateResource : Adapter
     {
         public override string Type { get; } = "voice-templates";
 
@@ -24,7 +91,7 @@ namespace Omnigage.Resources
 
         public string Kind { get; set; }
 
-        public UploadModel Upload { get; set; }
+        public UploadResource Upload { get; set; }
 
         [JsonIgnore]
         public string FilePath { get; set; }
@@ -33,7 +100,7 @@ namespace Omnigage.Resources
     /// <summary>
     /// Resource `/engagements` - https://omnigage.docs.apiary.io/#reference/engagement-resources
     /// </summary>
-    public class EngagementModel : Adapter
+    public class EngagementResource : Adapter
     {
         public override string Type { get; } = "engagements";
 
@@ -47,7 +114,7 @@ namespace Omnigage.Resources
     /// <summary>
     /// Resource: `/activities` - https://omnigage.docs.apiary.io/#reference/engagement-resources/activity-collection
     /// </summary>
-    public class ActivityModel : Adapter
+    public class ActivityResource : Adapter
     {
         public override string Type { get; } = "activities";
 
@@ -55,16 +122,16 @@ namespace Omnigage.Resources
 
         public string Kind;
 
-        public EngagementModel Engagement;
+        public EngagementResource Engagement;
 
         [JsonProperty(propertyName: "caller-id")]
-        public CallerIdModel CallerId;
+        public CallerIdResource CallerId;
     }
 
     /// <summary>
     /// Resource: `/triggers` - https://omnigage.docs.apiary.io/#reference/engagement-resources/trigger-collection
     /// </summary>
-    public class TriggerModel : Adapter
+    public class TriggerResource : Adapter
     {
         public override string Type { get; } = "triggers";
 
@@ -74,15 +141,15 @@ namespace Omnigage.Resources
         public string OnEvent;
 
         [JsonProperty(propertyName: "voice-template")]
-        public VoiceTemplateModel VoiceTemplate;
+        public VoiceTemplateResource VoiceTemplate;
 
-        public ActivityModel Activity;
+        public ActivityResource Activity;
     }
 
     /// <summary>
     /// Resource: `/envelopes` - https://omnigage.docs.apiary.io/#reference/engagement-resources/envelope-collection
     /// </summary>
-    public class EnvelopeModel : Adapter
+    public class EnvelopeResource : Adapter
     {
         public override string Type { get; } = "envelopes";
 
@@ -92,20 +159,27 @@ namespace Omnigage.Resources
         [JsonProperty(propertyName: "meta_prop")]
         public Dictionary<string, string> Meta;
 
-        public EngagementModel Engagement;
+        public EngagementResource Engagement;
 
-        public static string SerializeBulk(List<EnvelopeModel> records)
+        public static string SerializeBulk(List<EnvelopeResource> records)
         {
             string payload = JsonConvert.SerializeObject(records, new JsonApiSerializerSettings());
             // Work around `JsonApiSerializer` moving properties named "meta" above "attributes"
             return payload.Replace("meta_prop", "meta");
+        }
+
+        public override string Serialize()
+        {
+            string serialized = base.Serialize();
+
+            return serialized.Replace("meta_prop", "meta");
         }
     }
 
     /// <summary>
     /// Resource: `/uploads` - https://omnigage.docs.apiary.io/#reference/media-resources/upload
     /// </summary>
-    public class UploadModel : Adapter
+    public class UploadResource : Adapter
     {
         public override string Type { get; } = "uploads";
 
@@ -142,22 +216,19 @@ namespace Omnigage.Resources
             }";
         }
 
-        public override async Task Create(HttpClient client)
+        public override async Task Create()
         {
             this.FileName = Path.GetFileName(this.FilePath);
-            this.FileSize = new System.IO.FileInfo(this.FilePath).Length;
+            this.FileSize = new FileInfo(this.FilePath).Length;
             this.MimeType = MimeTypesMap.GetMimeType(this.FileName);
 
-            await base.Create(client);
+            await base.Create();
 
-            using (var clientS3 = new HttpClient())
-            {
-                // Create multipart form including setting form data and file content
-                MultipartFormDataContent form = await this.CreateMultipartForm();
+            // Create multipart form including setting form data and file content
+            MultipartFormDataContent form = await this.CreateMultipartForm();
 
-                // Upload to S3
-                await this.PostS3Request(clientS3, form);
-            };
+            // Upload to S3
+            await this.PostS3Request(form);
         }
 
         /// <summary>
@@ -215,20 +286,26 @@ namespace Omnigage.Resources
         /// <param name="uploadInstance"></param>
         /// <param name="form"></param>
         /// <param name="url"></param>
-        async Task PostS3Request(HttpClient client, MultipartFormDataContent form)
+        async Task PostS3Request(MultipartFormDataContent form)
         {
+            var method = new HttpMethod("POST");
+            var request = new HttpRequestMessage(method, this.RequestUrl)
+            {
+                Content = form
+            };
+
             // Set each of the `upload` instance headers
             foreach (JObject header in this.RequestHeaders)
             {
                 foreach (KeyValuePair<string, JToken> prop in header)
                 {
-                    client.DefaultRequestHeaders.Add(prop.Key, (string)prop.Value);
+                    request.Headers.Add(prop.Key, (string)prop.Value);
                 }
             }
 
             // Make S3 request
-            HttpResponseMessage responseS3 = await client.PostAsync(this.RequestUrl, form);
-            string responseContent = await responseS3.Content.ReadAsStringAsync();
+            HttpResponseMessage responseS3 = await Client.HttpClient.SendAsync(request);
+            // string responseContent = await responseS3.Content.ReadAsStringAsync();
 
             if ((int)responseS3.StatusCode == 204)
             {
@@ -245,7 +322,7 @@ namespace Omnigage.Resources
     /// <summary>
     /// Resource: `/caller-ids` - https://omnigage.docs.apiary.io/#reference/identity-resources/caller-id-collection
     /// </summary>
-    public class CallerIdModel : Adapter
+    public class CallerIdResource : Adapter
     {
         public override string Type { get; } = "caller-ids";
     }

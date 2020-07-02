@@ -1,0 +1,41 @@
+﻿[
+  {
+    "Request": {
+      "Method": "POST",
+      "URI": "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/calls",
+      "RequestHeaders": {
+        "Authorization": "Basic <redacted>",
+        "X-Account-Key": "sandbox"
+      },
+      "ContentHeaders": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "76"
+      },
+      "Body": "{\"data\":{\"type\":\"calls\",\"attributes\":{\"to\":\"+18332676094\",\"action\":\"dial\"}}}"
+    },
+    "Response": {
+      "Status": {
+        "Code": 201,
+        "Message": "CREATED"
+      },
+      "ResponseHeaders": {
+        "Connection": "keep-alive",
+        "Access-Control-Allow-Origin": "*",
+        "Date": "Thu, 02 Jul 2020 20:57:47 GMT",
+        "Server": "nginx/1.16.1",
+        "X-Deploy-Version": "208068e0a2922f918f2a1de0aa35b30d47daa2df",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 c4afcfec80e8a573f647bcf1d4f73ff6.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "DFW55-C2",
+        "X-Amz-Cf-Id": "ljaOYu3L8k2Qgwl1tSr87FrJ8WflaVITf9YyBwURMNEHPHklv0fISw=="
+      },
+      "ContentHeaders": {
+        "Content-Type": "application/json",
+        "Content-Length": "1219"
+      },
+      "Body": "{\"data\":{\"type\":\"calls\",\"id\":\"DnfsZKkYHG4QiMdUPDeWHZ\",\"attributes\":{\"from\":\"+13213042513\",\"to\":\"+18332676094\",\"has-recording\":false,\"status\":\"queued\",\"duration\":null,\"started-at\":null,\"finished-at\":null,\"direction\":\"outbound\",\"kind\":\"native\",\"meta\":{},\"callback\":null,\"hold-time\":null,\"hold-at\":null,\"hold\":false,\"callback-include\":null,\"created-at\":\"2020-07-02T20:57:47.198367+00:00\",\"updated-at\":\"2020-07-02T20:57:47.211713+00:00\"},\"relationships\":{\"parent-call\":{\"data\":null},\"caller-id\":{\"data\":null},\"phone-number\":{\"data\":null},\"contact\":{\"data\":null},\"envelope\":{\"data\":null},\"recorded-file\":{\"data\":null},\"voice-template\":{\"data\":null},\"result\":{\"data\":null},\"memberships\":{\"data\":[]},\"conference\":{\"data\":null},\"recordings\":{\"links\":{\"related\":\"https://dvfoa3pu2rxx6.cloudfront.net/api/v1/recordings?filter[call.id]=DnfsZKkYHG4QiMdUPDeWHZ\"}},\"results\":{\"links\":{\"related\":\"https://dvfoa3pu2rxx6.cloudfront.net/api/v1/call-results?filter[call.id]=DnfsZKkYHG4QiMdUPDeWHZ\"}},\"service-profile\":{\"data\":{\"type\":\"service-profiles\",\"id\":\"6tKqzaUcok6YsUrXYmU4u2\"}},\"created-by\":{\"data\":{\"type\":\"memberships\",\"id\":\"vrRoJ5kieg4JcATs2r8wdc\"}},\"updated-by\":{\"data\":{\"type\":\"memberships\",\"id\":\"vrRoJ5kieg4JcATs2r8wdc\"}}}}}\n",
+      "HttpVersion": "1.1"
+    },
+    "RecordedAt": "2020-07-02T15:57:47.310019-05:00"
+  }
+]

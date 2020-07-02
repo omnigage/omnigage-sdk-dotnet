@@ -3,10 +3,8 @@ using System.Text;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using RestSharp;
 using JsonApiSerializer;
 using AutoMapper;
-using Omnigage.Auth;
 
 namespace Omnigage.Util
 {
@@ -35,11 +33,10 @@ namespace Omnigage.Util
         /// <summary>
         /// Helper method for creating a new instance.
         /// </summary>
-        /// <param name="client"></param>
-        public virtual async Task Create(HttpClient client)
+        public virtual async Task Create()
         {
             string payload = this.Serialize();
-            string response = await PostRequest(client, this.Type, payload);
+            string response = await PostRequest(this.Type, payload);
             Type type = this.GetType();
 
             object instance = JsonConvert.DeserializeObject(response, type, new JsonApiSerializerSettings());
@@ -50,11 +47,10 @@ namespace Omnigage.Util
         /// <summary>
         /// Helper method for updating an instance.
         /// </summary>
-        /// <param name="client"></param>
-        public virtual async Task Update(HttpClient client)
+        public virtual async Task Update()
         {
             string payload = this.Serialize();
-            string response = await PatchRequest(client, $"{this.Type}/{this.Id}", payload);
+            string response = await PatchRequest($"{this.Type}/{this.Id}", payload);
             Type type = this.GetType();
 
             object instance = JsonConvert.DeserializeObject(response, type, new JsonApiSerializerSettings());
@@ -63,60 +59,111 @@ namespace Omnigage.Util
         }
 
         /// <summary>
+        /// Helper method for reloading a single instance.
+        /// </summary>
+        public virtual async Task Reload()
+        {
+            await this.Find(this.Id);
+        }
+
+        /// <summary>
+        /// Helper method for requesting a single instance.
+        /// </summary>
+        public virtual async Task Find(string id)
+        {
+            string response = await GetRequest($"{this.Type}/{id}");
+            Type type = this.GetType();
+
+            object instance = JsonConvert.DeserializeObject(response, type, new JsonApiSerializerSettings());
+
+            this.CopyProperties(instance);
+        }
+
+        /// <summary>
+        /// Create a GET request to the Omnigage API and return an object for retrieving tokens
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <returns>JObject</returns>
+        public static async Task<string> GetRequest(string uri)
+        {
+            return await SendClientRequest("GET", uri);
+        }
+
+        /// <summary>
         /// Create a POST request to the Omnigage API and return an object for retrieving tokens
         /// </summary>
-        /// <param name="client"></param>
         /// <param name="uri"></param>
         /// <param name="content"></param>
         /// <returns>JObject</returns>
-        public static async Task<string> PostRequest(HttpClient client, string uri, string content)
+        public static async Task<string> PostRequest(string uri, string content)
         {
-            StringContent payload = new StringContent(content, Encoding.UTF8, "application/json");
-            HttpResponseMessage request = await client.PostAsync(uri, payload);
-            return await request.Content.ReadAsStringAsync();
+            return await SendClientRequest("POST", uri, content);
         }
 
 
         /// <summary>
         /// Create a PATCH request to the Omnigage API and return an object for retrieving tokens
         /// </summary>
-        /// <param name="client"></param>
         /// <param name="uri"></param>
         /// <param name="content"></param>
         /// <returns>JObject</returns>
-        public static async Task<string> PatchRequest(HttpClient client, string uri, string content)
+        public static async Task<string> PatchRequest(string uri, string content)
         {
-            StringContent payload = new StringContent(content, Encoding.UTF8, "application/json");
-
-            var method = new HttpMethod("PATCH");
-            var request = new HttpRequestMessage(method, uri)
-            {
-                Content = payload
-            };
-
-            HttpResponseMessage response = await client.SendAsync(request);
-
-            return await request.Content.ReadAsStringAsync();
+            return await SendClientRequest("PATCH", uri, content);
         }
 
         /// <summary>
         /// Create a bulk request to the Omnigage API and return an object
         /// </summary>
-        /// <param name="auth"></param>
         /// <param name="uri"></param>
-        /// <param name="payload"></param>
+        /// <param name="content"></param>
         /// <returns>IRestResponse</returns>
-        public static IRestResponse PostBulkRequest(AuthContext auth, string uri, string payload)
+        public static async Task<string> PostBulkRequest(string uri, string content)
         {
-            string bulkRequestHeader = "application/vnd.api+json;ext=bulk";
-            var bulkClient = new RestClient(auth.Host + uri);
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Accept", bulkRequestHeader);
-            request.AddHeader("Content-Type", bulkRequestHeader);
-            request.AddHeader("X-Account-Key", auth.AccountKey);
-            request.AddHeader("Authorization", "Basic " + auth.Authorization);
-            request.AddParameter(bulkRequestHeader, payload, ParameterType.RequestBody);
-            return bulkClient.Execute(request);
+            return await SendClientRequest("POST", uri, content, "application/vnd.api+json;ext=bulk");
+        }
+
+        /// <summary>
+        /// Send a request using the Omnigage client.
+        /// </summary>
+        /// <param name="httpMethod"></param>
+        /// <param name="uri"></param>
+        /// <param name="content"></param>
+        /// <param name="contentType"></param>
+        /// <returns></returns>
+        public static async Task<string> SendClientRequest(string httpMethod, string uri, string content = null, string contentType = null)
+        {
+            StringContent payload = null;
+
+            if (content != null)
+            {
+                payload = new StringContent(content, Encoding.UTF8, "application/json");
+            }
+
+            
+            if (Client.IsTesting)
+            {
+                Client.TestRequestIncremental++;
+                uri += $"?test_request_number={Client.TestRequestIncremental}";
+            }
+
+            var method = new HttpMethod(httpMethod);
+            var request = new HttpRequestMessage(method, Client.Host + uri)
+            {
+                Content = payload
+            };
+
+            request.Headers.Add("Authorization", "Basic " + Client.Auth.Authorization);
+            request.Headers.Add("X-Account-Key", Client.AccountKey);
+
+            if (contentType != null)
+            {
+                request.Content.Headers.TryAddWithoutValidation("Content-Type", contentType);
+            }
+
+            HttpResponseMessage response = await Client.HttpClient.SendAsync(request);
+
+            return await response.Content.ReadAsStringAsync();
         }
 
         /// <summary>
@@ -132,7 +179,7 @@ namespace Omnigage.Util
                 cnf.CreateMap(type, type).ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
             });
             var mapper = new Mapper(_configuration);
-            mapper.DefaultContext.Mapper.Map(source, this);
+            mapper.Map(source, this);
         }
     }
 }

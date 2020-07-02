@@ -1,0 +1,41 @@
+﻿[
+  {
+    "Request": {
+      "Method": "POST",
+      "URI": "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/calls?test_request_number=1",
+      "RequestHeaders": {
+        "Authorization": "Basic <redacted>",
+        "X-Account-Key": "sandbox"
+      },
+      "ContentHeaders": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "189"
+      },
+      "Body": "{\"data\":{\"type\":\"calls\",\"attributes\":{\"from\":\"+18332676094\",\"to\":\"+14076413749\",\"action\":\"dial\"},\"relationships\":{\"caller-id\":{\"data\":{\"id\":\"yL9vQaWrSqg5W8EFEpE6xZ\",\"type\":\"caller-ids\"}}}}}"
+    },
+    "Response": {
+      "Status": {
+        "Code": 201,
+        "Message": "CREATED"
+      },
+      "ResponseHeaders": {
+        "Connection": "keep-alive",
+        "Access-Control-Allow-Origin": "*",
+        "Date": "Thu, 02 Jul 2020 21:56:55 GMT",
+        "Server": "nginx/1.16.1",
+        "X-Deploy-Version": "208068e0a2922f918f2a1de0aa35b30d47daa2df",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 018f2ef56d88031dc9eda1b15a3e07be.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "DFW55-C2",
+        "X-Amz-Cf-Id": "6BwJh3k-9OvK501X5r-nTIRZgw-ZZy-PxtdXOfLvqVp9Zct5F1AsUg=="
+      },
+      "ContentHeaders": {
+        "Content-Type": "application/json",
+        "Content-Length": "1358"
+      },
+      "Body": "{\"data\":{\"type\":\"calls\",\"id\":\"hCRJM5VV9Vt9VpbwMfW4yB\",\"attributes\":{\"from\":\"+13217326379\",\"to\":\"+14076413749\",\"has-recording\":false,\"status\":\"queued\",\"duration\":null,\"started-at\":null,\"finished-at\":null,\"direction\":\"outbound\",\"kind\":\"native\",\"meta\":{},\"callback\":null,\"hold-time\":null,\"hold-at\":null,\"hold\":false,\"callback-include\":null,\"created-at\":\"2020-07-02T21:56:55.456458+00:00\",\"updated-at\":\"2020-07-02T21:56:55.477981+00:00\"},\"relationships\":{\"parent-call\":{\"data\":{\"type\":\"calls\",\"id\":\"nvHSMibEh3SU7RwADdBeyP\"}},\"caller-id\":{\"data\":{\"type\":\"caller-ids\",\"id\":\"yL9vQaWrSqg5W8EFEpE6xZ\"}},\"phone-number\":{\"data\":{\"type\":\"phone-numbers\",\"id\":\"GncieHvbCKfMYXmeycoWZm\"}},\"contact\":{\"data\":null},\"envelope\":{\"data\":null},\"recorded-file\":{\"data\":null},\"voice-template\":{\"data\":null},\"result\":{\"data\":null},\"memberships\":{\"data\":[]},\"conference\":{\"data\":null},\"recordings\":{\"links\":{\"related\":\"https://dvfoa3pu2rxx6.cloudfront.net/api/v1/recordings?filter[call.id]=hCRJM5VV9Vt9VpbwMfW4yB\"}},\"results\":{\"links\":{\"related\":\"https://dvfoa3pu2rxx6.cloudfront.net/api/v1/call-results?filter[call.id]=hCRJM5VV9Vt9VpbwMfW4yB\"}},\"service-profile\":{\"data\":{\"type\":\"service-profiles\",\"id\":\"6tKqzaUcok6YsUrXYmU4u2\"}},\"created-by\":{\"data\":{\"type\":\"memberships\",\"id\":\"vrRoJ5kieg4JcATs2r8wdc\"}},\"updated-by\":{\"data\":{\"type\":\"memberships\",\"id\":\"vrRoJ5kieg4JcATs2r8wdc\"}}}}}\n",
+      "HttpVersion": "1.1"
+    },
+    "RecordedAt": "2020-07-02T16:56:55.451634-05:00"
+  }
+]

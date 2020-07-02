@@ -19,7 +19,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="RestSharp" Version="106.11.4" />
     <PackageReference Include="JsonApiSerializer" Version="1.7.4" />
-    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="AutoMapper" Version="10.0.0" />
     <PackageReference Include="MimeTypesMap" Version="1.0.8" />
   </ItemGroup>
 </Project>
