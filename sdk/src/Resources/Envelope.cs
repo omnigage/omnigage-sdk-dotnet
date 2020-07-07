@@ -15,6 +15,9 @@ namespace Omnigage.Resources
         [JsonProperty(propertyName: "phone-number")]
         public string PhoneNumber;
 
+        [JsonProperty(propertyName: "email-address")]
+        public string EmailAddress;
+
         [JsonProperty(propertyName: "meta_prop")]
         public Dictionary<string, string> Meta;
 

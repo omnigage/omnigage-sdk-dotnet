@@ -100,5 +100,121 @@ namespace Tests.IntegrationTests
             engagement.Status = "scheduled";
             await engagement.Update();
         }
+
+        [Test]
+        async public Task TestEmailEngagement()
+        {
+            var scotchMode = ScotchMode.Replaying;
+            var client = HttpClients.NewHttpClient("IntegrationTests/Cassettes/EngagementEmailTests.json", scotchMode);
+
+            string tokenKey = "key";
+            string tokenSecret = "secret";
+            string accountKey = "sandbox";
+            string host = "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/";
+
+            Client.Init(tokenKey, tokenSecret, accountKey, host, client);
+
+            EngagementResource engagement = new EngagementResource();
+            engagement.Name = "Example Email Blast";
+            engagement.Direction = "outbound";
+
+            await engagement.Create();
+
+            EmailTemplateResource emailTemplate = new EmailTemplateResource();
+            emailTemplate.Subject = "Ahoy";
+            emailTemplate.Body = "Sample body";
+
+            await emailTemplate.Create();
+
+            ActivityResource activity = new ActivityResource();
+            activity.Name = "Email Blast";
+            activity.Kind = ActivityResource.EMAIL;
+            activity.Engagement = engagement;
+            activity.EmailTemplate = emailTemplate;
+            activity.EmailId = new EmailIdResource
+            {
+                Id = "NbXW9TCHax9zfAeDhaY2bG"
+            };
+
+            await activity.Create();
+
+            EnvelopeResource envelope = new EnvelopeResource();
+            envelope.EmailAddress = "demo@omnigage.com";
+            envelope.Engagement = engagement;
+            envelope.Meta = new Dictionary<string, string>
+            {
+                { "first-name", "Omnigage" },
+                { "last-name", "Demo" }
+            };
+
+            // Push one or more envelopes into list
+            List<EnvelopeResource> envelopes = new List<EnvelopeResource> { };
+            envelopes.Add(envelope);
+
+            // Populate engagement queue
+            await Adapter.PostBulkRequest("envelopes", EnvelopeResource.SerializeBulk(envelopes));
+
+            // Schedule engagement for processing
+            engagement.Status = "scheduled";
+            await engagement.Update();
+        }
+
+        [Test]
+        async public Task TestTextEngagement()
+        {
+            var scotchMode = ScotchMode.Replaying;
+            var client = HttpClients.NewHttpClient("IntegrationTests/Cassettes/EngagementTextTests.json", scotchMode);
+
+            string tokenKey = "key";
+            string tokenSecret = "secret";
+            string accountKey = "firstbank";
+            string host = "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/";
+
+            Client.Init(tokenKey, tokenSecret, accountKey, host, client);
+
+            EngagementResource engagement = new EngagementResource();
+            engagement.Name = "Example Text Blast";
+            engagement.Direction = "outbound";
+
+            await engagement.Create();
+
+            TextTemplateResource textTemplate = new TextTemplateResource();
+            textTemplate.Name = "Text Template";
+            textTemplate.Body = "Sample body";
+
+            await textTemplate.Create();
+
+            ActivityResource activity = new ActivityResource();
+            activity.Name = "Text Blast";
+            activity.Kind = ActivityResource.TEXT;
+            activity.Engagement = engagement;
+            activity.TextTemplate = textTemplate;
+            activity.PhoneNumber = new PhoneNumberResource
+            {
+                Id = "GncieHvbCKfMYXmeycoWZm"
+            };
+
+            await activity.Create();
+
+            EnvelopeResource envelope = new EnvelopeResource();
+            envelope.PhoneNumber = "+14076413749";
+            envelope.Engagement = engagement;
+            envelope.Meta = new Dictionary<string, string>
+            {
+                { "first-name", "Omnigage" },
+                { "last-name", "Demo" }
+            };
+
+            // Push one or more envelopes into list
+            List<EnvelopeResource> envelopes = new List<EnvelopeResource> { };
+            envelopes.Add(envelope);
+
+            // Populate engagement queue
+            await Adapter.PostBulkRequest("envelopes", EnvelopeResource.SerializeBulk(envelopes));
+
+            // Schedule engagement for processing
+            engagement.Status = "scheduled";
+            await engagement.Update();
+        }
     }
 }

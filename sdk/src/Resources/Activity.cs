@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 using Omnigage.Util;
 
 namespace Omnigage.Resources
@@ -8,6 +9,11 @@ namespace Omnigage.Resources
     /// </summary>
     public class ActivityResource : Adapter
     {
+        public const string VOICE = "voice";
+        public const string TEXT = "text";
+        public const string EMAIL = "email";
+        public const string DIAL = "dial";
+
         public override string Type { get; } = "activities";
 
         public string Name;
@@ -18,5 +24,20 @@ namespace Omnigage.Resources
 
         [JsonProperty(propertyName: "caller-id")]
         public CallerIdResource CallerId;
+
+        [JsonProperty(propertyName: "email-id")]
+        public EmailIdResource EmailId;
+
+        [JsonProperty(propertyName: "phone-number")]
+        public PhoneNumberResource PhoneNumber;
+
+        [JsonProperty(propertyName: "email-template")]
+        public EmailTemplateResource EmailTemplate;
+
+        [JsonProperty(propertyName: "text-template")]
+        public TextTemplateResource TextTemplate;
+
+        [JsonProperty(propertyName: "voice-templates")]
+        public List<VoiceTemplateResource> VoiceTemplates { get; set; }
     }
 }

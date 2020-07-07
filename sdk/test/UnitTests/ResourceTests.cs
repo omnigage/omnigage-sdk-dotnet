@@ -55,7 +55,6 @@ namespace Tests.UnitTests
             Assert.AreEqual(activity.Id, "1");
             Assert.AreEqual(activity.Name, "Voice Blast");
             Assert.AreEqual(activity.Kind, "voice");
-            Assert.AreEqual(activity.ToString(), activityResponse);
 
             TriggerResource trigger = new TriggerResource();
             trigger.Kind = "play";

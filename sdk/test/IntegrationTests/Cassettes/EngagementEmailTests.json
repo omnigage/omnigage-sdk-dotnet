@@ -1,0 +1,236 @@
+﻿[
+  {
+    "Request": {
+      "Method": "POST",
+      "URI": "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/engagements",
+      "RequestHeaders": {
+        "Authorization": "Basic <redacted>",
+        "X-Account-Key": "sandbox"
+      },
+      "ContentHeaders": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "98"
+      },
+      "Body": "{\"data\":{\"type\":\"engagements\",\"attributes\":{\"name\":\"Example Email Blast\",\"direction\":\"outbound\"}}}"
+    },
+    "Response": {
+      "Status": {
+        "Code": 201,
+        "Message": "CREATED"
+      },
+      "ResponseHeaders": {
+        "Connection": "keep-alive",
+        "Access-Control-Allow-Origin": "*",
+        "Date": "Tue, 07 Jul 2020 19:27:00 GMT",
+        "Server": "nginx/1.16.1",
+        "X-Deploy-Version": "208068e0a2922f918f2a1de0aa35b30d47daa2df",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 89f5815ea89e2c259d279849df06095a.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "MSP50-C1",
+        "X-Amz-Cf-Id": "VQ5KFjYuNfm5Iv-wfm7-At-OMGWuDj6wJ-G3kUvAE1zTmeiUlwyy6Q=="
+      },
+      "ContentHeaders": {
+        "Content-Type": "application/json",
+        "Content-Length": "1153"
+      },
+      "Body": "{\"data\":{\"type\":\"engagements\",\"id\":\"x93ga7DfX5VzKYFpgZYSwS\",\"attributes\":{\"name\":\"Example Email Blast\",\"status\":\"pending\",\"is-archived\":false,\"direction\":\"outbound\",\"delivery-type\":\"immediately\",\"delivery-time\":null,\"delivery-compliance-is-approved\":false,\"created-at\":\"2020-07-07T19:27:00.197601+00:00\",\"updated-at\":\"2020-07-07T19:27:00.225083+00:00\",\"count-total\":null,\"count-complete\":null,\"count-incomplete\":null,\"count-hold\":null,\"queue-kind\":\"batch\",\"queue-batch-limit\":55,\"queue-progressive-ratio\":null,\"queue-throttle-hold-limit\":null,\"queue-throttle-day-limit\":null,\"queue-throttle-hour-limit\":null,\"queue-schedule-is-enabled\":false,\"queue-schedule\":null,\"deleted-at\":null},\"relationships\":{\"activity\":{\"data\":null},\"reviews\":{\"links\":{\"related\":\"https://dvfoa3pu2rxx6.cloudfront.net/api/v1/engagements/x93ga7DfX5VzKYFpgZYSwS/reviews\"}},\"latest-review\":{\"data\":null},\"lists\":{\"data\":[]},\"caller-ids\":{\"data\":[]},\"email-ids\":{\"data\":[]},\"phone-numbers\":{\"data\":[]},\"deleted-by\":{\"data\":null},\"created-by\":{\"data\":{\"type\":\"memberships\",\"id\":\"vrRoJ5kieg4JcATs2r8wdc\"}},\"updated-by\":{\"data\":{\"type\":\"memberships\",\"id\":\"vrRoJ5kieg4JcATs2r8wdc\"}}}}}\n",
+      "HttpVersion": "1.1"
+    },
+    "RecordedAt": "2020-07-07T14:27:00.448047-05:00"
+  },
+  {
+    "Request": {
+      "Method": "POST",
+      "URI": "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/email-templates",
+      "RequestHeaders": {
+        "Authorization": "Basic <redacted>",
+        "X-Account-Key": "sandbox"
+      },
+      "ContentHeaders": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "88"
+      },
+      "Body": "{\"data\":{\"type\":\"email-templates\",\"attributes\":{\"subject\":\"Ahoy\",\"body\":\"Sample body\"}}}"
+    },
+    "Response": {
+      "Status": {
+        "Code": 201,
+        "Message": "CREATED"
+      },
+      "ResponseHeaders": {
+        "Connection": "keep-alive",
+        "Access-Control-Allow-Origin": "*",
+        "Date": "Tue, 07 Jul 2020 19:27:01 GMT",
+        "Server": "nginx/1.16.1",
+        "X-Deploy-Version": "208068e0a2922f918f2a1de0aa35b30d47daa2df",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 89f5815ea89e2c259d279849df06095a.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "MSP50-C1",
+        "X-Amz-Cf-Id": "DmGKrY-_CkmwcHjWRvFIWrg_qYNGWx9FEuZdI4UM1i7lath1WwYL7A=="
+      },
+      "ContentHeaders": {
+        "Content-Type": "application/json",
+        "Content-Length": "809"
+      },
+      "Body": "{\"data\":{\"type\":\"email-templates\",\"id\":\"BEXRtoH3KPkhDNKkggBT7h\",\"attributes\":{\"subject\":\"Ahoy\",\"body\":\"Sample body\",\"created-at\":\"2020-07-07T19:27:00.941275+00:00\",\"updated-at\":\"2020-07-07T19:27:00.941282+00:00\",\"is-archived\":false,\"deleted-at\":null},\"relationships\":{\"files\":{\"data\":[]},\"primary\":{\"data\":{\"type\":\"email-templates\",\"id\":\"BEXRtoH3KPkhDNKkggBT7h\"}},\"revision\":{\"data\":{\"type\":\"email-templates\",\"id\":\"n6Jd2bZKJ2sgArBnAgewCa\"}},\"revisions\":{\"links\":{\"related\":\"https://dvfoa3pu2rxx6.cloudfront.net/api/v1/email-templates/BEXRtoH3KPkhDNKkggBT7h/revisions\"}},\"tags\":{\"data\":[]},\"attachments\":{\"data\":[]},\"deleted-by\":{\"data\":null},\"created-by\":{\"data\":{\"type\":\"memberships\",\"id\":\"vrRoJ5kieg4JcATs2r8wdc\"}},\"updated-by\":{\"data\":{\"type\":\"memberships\",\"id\":\"vrRoJ5kieg4JcATs2r8wdc\"}}}},\"included\":[]}\n",
+      "HttpVersion": "1.1"
+    },
+    "RecordedAt": "2020-07-07T14:27:01.054187-05:00"
+  },
+  {
+    "Request": {
+      "Method": "POST",
+      "URI": "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/activities",
+      "RequestHeaders": {
+        "Authorization": "Basic <redacted>",
+        "X-Account-Key": "sandbox"
+      },
+      "ContentHeaders": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "714"
+      },
+      "Body": "{\"data\":{\"type\":\"activities\",\"attributes\":{\"name\":\"Email Blast\",\"kind\":\"email\"},\"relationships\":{\"engagement\":{\"data\":{\"id\":\"x93ga7DfX5VzKYFpgZYSwS\",\"type\":\"engagements\"}},\"email-id\":{\"data\":{\"id\":\"NbXW9TCHax9zfAeDhaY2bG\",\"type\":\"email-ids\"}},\"email-template\":{\"data\":{\"id\":\"BEXRtoH3KPkhDNKkggBT7h\",\"type\":\"email-templates\"}}}},\"included\":[{\"id\":\"x93ga7DfX5VzKYFpgZYSwS\",\"type\":\"engagements\",\"attributes\":{\"name\":\"Example Email Blast\",\"direction\":\"outbound\",\"status\":\"pending\"}},{\"id\":\"BEXRtoH3KPkhDNKkggBT7h\",\"type\":\"email-templates\",\"attributes\":{\"subject\":\"Ahoy\",\"body\":\"Sample body\"},\"relationships\":{\"upload-files\":{\"data\":[]},\"upload-attachments\":{\"data\":[]},\"files\":{\"data\":[]},\"attachments\":{\"data\":[]}}}]}"
+    },
+    "Response": {
+      "Status": {
+        "Code": 201,
+        "Message": "CREATED"
+      },
+      "ResponseHeaders": {
+        "Connection": "keep-alive",
+        "Access-Control-Allow-Origin": "*",
+        "Date": "Tue, 07 Jul 2020 19:27:01 GMT",
+        "Server": "nginx/1.16.1",
+        "X-Deploy-Version": "208068e0a2922f918f2a1de0aa35b30d47daa2df",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 89f5815ea89e2c259d279849df06095a.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "MSP50-C1",
+        "X-Amz-Cf-Id": "Fxuc88wVLoXoFW-Qt6k3F73wBt1nwwdrs6JFPNrHTlsa6-TW5LEmZQ=="
+      },
+      "ContentHeaders": {
+        "Content-Type": "application/json",
+        "Content-Length": "626"
+      },
+      "Body": "{\"data\":{\"type\":\"activities\",\"id\":\"ogjXHPPRYJwWWRHFSJ6Nme\",\"attributes\":{\"name\":\"Email Blast\",\"kind\":\"email\",\"created-at\":\"2020-07-07T19:27:01.325137+00:00\",\"updated-at\":\"2020-07-07T19:27:01.325148+00:00\"},\"relationships\":{\"engagement\":{\"data\":{\"type\":\"engagements\",\"id\":\"x93ga7DfX5VzKYFpgZYSwS\"}},\"transition\":{\"data\":null},\"triggers\":{\"links\":{\"related\":\"https://dvfoa3pu2rxx6.cloudfront.net/api/v1/triggers?filter[activity.id]=eq:ogjXHPPRYJwWWRHFSJ6Nme\"},\"data\":[]},\"email-template\":{\"data\":{\"type\":\"email-templates\",\"id\":\"BEXRtoH3KPkhDNKkggBT7h\"}},\"email-id\":{\"data\":{\"type\":\"email-ids\",\"id\":\"NbXW9TCHax9zfAeDhaY2bG\"}}}}}\n",
+      "HttpVersion": "1.1"
+    },
+    "RecordedAt": "2020-07-07T14:27:01.465639-05:00"
+  },
+  {
+    "Request": {
+      "Method": "POST",
+      "URI": "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/envelopes",
+      "RequestHeaders": {
+        "Authorization": "Basic <redacted>",
+        "X-Account-Key": "sandbox"
+      },
+      "ContentHeaders": {
+        "Content-Type": "application/json; charset=utf-8,application/vnd.api+json;ext=bulk",
+        "Content-Length": "379"
+      },
+      "Body": "{\"data\":[{\"type\":\"envelopes\",\"attributes\":{\"email-address\":\"demo@omnigage.com\",\"meta\":{\"first-name\":\"Omnigage\",\"last-name\":\"Demo\"}},\"relationships\":{\"engagement\":{\"data\":{\"id\":\"x93ga7DfX5VzKYFpgZYSwS\",\"type\":\"engagements\"}}}}],\"included\":[{\"id\":\"x93ga7DfX5VzKYFpgZYSwS\",\"type\":\"engagements\",\"attributes\":{\"name\":\"Example Email Blast\",\"direction\":\"outbound\",\"status\":\"pending\"}}]}"
+    },
+    "Response": {
+      "Status": {
+        "Code": 201,
+        "Message": "CREATED"
+      },
+      "ResponseHeaders": {
+        "Connection": "keep-alive",
+        "Access-Control-Allow-Origin": "*",
+        "Date": "Tue, 07 Jul 2020 19:27:01 GMT",
+        "Server": "nginx/1.16.1",
+        "X-Deploy-Version": "208068e0a2922f918f2a1de0aa35b30d47daa2df",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 89f5815ea89e2c259d279849df06095a.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "MSP50-C1",
+        "X-Amz-Cf-Id": "dl29F-HmVtgXDWwUG4VbPA5_efSYRLlxNNFgMNC28C2-X1sQAoY0_A=="
+      },
+      "ContentHeaders": {
+        "Content-Type": "application/json",
+        "Content-Length": "975"
+      },
+      "Body": "{\"data\":[{\"type\":\"envelopes\",\"id\":\"Nz4DhGyRjwPMRdowmuDYdP\",\"attributes\":{\"email-address\":\"demo@omnigage.com\",\"phone-number\":null,\"status\":\"pending\",\"kind\":\"email\",\"retry-attempts\":0,\"direction\":\"outbound\",\"created-at\":\"2020-07-07T19:27:01.705699+00:00\",\"updated-at\":\"2020-07-07T19:27:01.705709+00:00\",\"meta\":{\"last-name\":\"Demo\",\"first-name\":\"Omnigage\"},\"callback\":null,\"callback-include\":null,\"is-priority\":false,\"delay-in-seconds\":null,\"scheduled-at\":null,\"processed-at\":null,\"completed-at\":null,\"callback-status\":[]},\"relationships\":{\"created-by\":{\"data\":{\"type\":\"memberships\",\"id\":\"vrRoJ5kieg4JcATs2r8wdc\"}},\"updated-by\":{\"data\":{\"type\":\"memberships\",\"id\":\"vrRoJ5kieg4JcATs2r8wdc\"}},\"contact\":{\"data\":null},\"engagement\":{\"data\":{\"type\":\"engagements\",\"id\":\"x93ga7DfX5VzKYFpgZYSwS\"}},\"activity\":{\"data\":{\"type\":\"activities\",\"id\":\"ogjXHPPRYJwWWRHFSJ6Nme\"}},\"call\":{\"data\":null},\"email\":{\"data\":null},\"text\":{\"data\":null},\"identity\":{\"data\":null},\"assigned\":{\"data\":null}}}]}\n",
+      "HttpVersion": "1.1"
+    },
+    "RecordedAt": "2020-07-07T14:27:01.807266-05:00"
+  },
+  {
+    "Request": {
+      "Method": "PATCH",
+      "URI": "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/engagements/M3Tnv3SeCv8Bz5iPyEsC8D",
+      "RequestHeaders": {
+        "Authorization": "Basic <redacted>",
+        "X-Account-Key": "sandbox"
+      },
+      "ContentHeaders": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "149"
+      },
+      "Body": "{\"data\":{\"id\":\"M3Tnv3SeCv8Bz5iPyEsC8D\",\"type\":\"engagements\",\"attributes\":{\"name\":\"Example Email Blast\",\"direction\":\"outbound\",\"status\":\"scheduled\"}}}"
+    },
+    "Response": {
+      "Status": {
+        "Code": 202,
+        "Message": "ACCEPTED"
+      },
+      "ResponseHeaders": {
+        "Connection": "keep-alive",
+        "Access-Control-Allow-Origin": "*",
+        "Date": "Tue, 07 Jul 2020 19:23:58 GMT",
+        "Server": "nginx/1.16.1",
+        "X-Deploy-Version": "208068e0a2922f918f2a1de0aa35b30d47daa2df",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 2b1e040abc964b2bf72a1919ab3ea875.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "DFW55-C2",
+        "X-Amz-Cf-Id": "Kx3B1p1aggPx4uZW4VXQhcARmU-tZy7uHvDgJg1TtXQruvGbWV7reA=="
+      },
+      "ContentHeaders": {
+        "Content-Type": "application/json",
+        "Content-Length": "1243"
+      },
+      "Body": "{\"data\":{\"type\":\"engagements\",\"id\":\"M3Tnv3SeCv8Bz5iPyEsC8D\",\"attributes\":{\"name\":\"Example Email Blast\",\"status\":\"scheduled\",\"is-archived\":false,\"direction\":\"outbound\",\"delivery-type\":\"immediately\",\"delivery-time\":null,\"delivery-compliance-is-approved\":false,\"created-at\":\"2020-07-07T19:23:56.837334+00:00\",\"updated-at\":\"2020-07-07T19:23:58.718497+00:00\",\"count-total\":null,\"count-complete\":0,\"count-incomplete\":0,\"count-hold\":0,\"queue-kind\":\"batch\",\"queue-batch-limit\":55,\"queue-progressive-ratio\":null,\"queue-throttle-hold-limit\":null,\"queue-throttle-day-limit\":null,\"queue-throttle-hour-limit\":null,\"queue-schedule-is-enabled\":false,\"queue-schedule\":null,\"deleted-at\":null},\"relationships\":{\"activity\":{\"data\":{\"type\":\"activities\",\"id\":\"8SENrJuscb9zJPsXFbUDyn\"}},\"reviews\":{\"links\":{\"related\":\"https://dvfoa3pu2rxx6.cloudfront.net/api/v1/engagements/M3Tnv3SeCv8Bz5iPyEsC8D/reviews\"}},\"latest-review\":{\"data\":null},\"lists\":{\"data\":[]},\"caller-ids\":{\"data\":[]},\"email-ids\":{\"data\":[{\"type\":\"email-ids\",\"id\":\"NbXW9TCHax9zfAeDhaY2bG\"}]},\"phone-numbers\":{\"data\":[]},\"deleted-by\":{\"data\":null},\"created-by\":{\"data\":{\"type\":\"memberships\",\"id\":\"vrRoJ5kieg4JcATs2r8wdc\"}},\"updated-by\":{\"data\":{\"type\":\"memberships\",\"id\":\"vrRoJ5kieg4JcATs2r8wdc\"}}}}}\n",
+      "HttpVersion": "1.1"
+    },
+    "RecordedAt": "2020-07-07T14:23:58.79254-05:00"
+  },
+  {
+    "Request": {
+      "Method": "PATCH",
+      "URI": "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/engagements/x93ga7DfX5VzKYFpgZYSwS",
+      "RequestHeaders": {
+        "Authorization": "Basic <redacted>",
+        "X-Account-Key": "sandbox"
+      },
+      "ContentHeaders": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "149"
+      },
+      "Body": "{\"data\":{\"id\":\"x93ga7DfX5VzKYFpgZYSwS\",\"type\":\"engagements\",\"attributes\":{\"name\":\"Example Email Blast\",\"direction\":\"outbound\",\"status\":\"scheduled\"}}}"
+    },
+    "Response": {
+      "Status": {
+        "Code": 202,
+        "Message": "ACCEPTED"
+      },
+      "ResponseHeaders": {
+        "Connection": "keep-alive",
+        "Access-Control-Allow-Origin": "*",
+        "Date": "Tue, 07 Jul 2020 19:27:02 GMT",
+        "Server": "nginx/1.16.1",
+        "X-Deploy-Version": "208068e0a2922f918f2a1de0aa35b30d47daa2df",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 89f5815ea89e2c259d279849df06095a.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "MSP50-C1",
+        "X-Amz-Cf-Id": "Hasp94GofQGiWMIfJWDrPcSTyHnY-fjeAhPM5AMQZDbX-1r_VKIvtg=="
+      },
+      "ContentHeaders": {
+        "Content-Type": "application/json",
+        "Content-Length": "1243"
+      },
+      "Body": "{\"data\":{\"type\":\"engagements\",\"id\":\"x93ga7DfX5VzKYFpgZYSwS\",\"attributes\":{\"name\":\"Example Email Blast\",\"status\":\"scheduled\",\"is-archived\":false,\"direction\":\"outbound\",\"delivery-type\":\"immediately\",\"delivery-time\":null,\"delivery-compliance-is-approved\":false,\"created-at\":\"2020-07-07T19:27:00.197601+00:00\",\"updated-at\":\"2020-07-07T19:27:02.086328+00:00\",\"count-total\":null,\"count-complete\":0,\"count-incomplete\":0,\"count-hold\":0,\"queue-kind\":\"batch\",\"queue-batch-limit\":55,\"queue-progressive-ratio\":null,\"queue-throttle-hold-limit\":null,\"queue-throttle-day-limit\":null,\"queue-throttle-hour-limit\":null,\"queue-schedule-is-enabled\":false,\"queue-schedule\":null,\"deleted-at\":null},\"relationships\":{\"activity\":{\"data\":{\"type\":\"activities\",\"id\":\"ogjXHPPRYJwWWRHFSJ6Nme\"}},\"reviews\":{\"links\":{\"related\":\"https://dvfoa3pu2rxx6.cloudfront.net/api/v1/engagements/x93ga7DfX5VzKYFpgZYSwS/reviews\"}},\"latest-review\":{\"data\":null},\"lists\":{\"data\":[]},\"caller-ids\":{\"data\":[]},\"email-ids\":{\"data\":[{\"type\":\"email-ids\",\"id\":\"NbXW9TCHax9zfAeDhaY2bG\"}]},\"phone-numbers\":{\"data\":[]},\"deleted-by\":{\"data\":null},\"created-by\":{\"data\":{\"type\":\"memberships\",\"id\":\"vrRoJ5kieg4JcATs2r8wdc\"}},\"updated-by\":{\"data\":{\"type\":\"memberships\",\"id\":\"vrRoJ5kieg4JcATs2r8wdc\"}}}}}\n",
+      "HttpVersion": "1.1"
+    },
+    "RecordedAt": "2020-07-07T14:27:02.180571-05:00"
+  }
+]
