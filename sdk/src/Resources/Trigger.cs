@@ -61,60 +61,44 @@ namespace Omnigage.Resources
         [JsonProperty(propertyName: "on-event")]
         public string OnEvent;
 
-        // Use with `TriggerKind.Record`
-        [JsonProperty(propertyName: "length")]
-        public int RecordLength;
+        public int Timeout;
 
-        [JsonProperty(propertyName: "timeout")]
-        public int RecordTimeout;
+        public bool Trim;
 
-        [JsonProperty(propertyName: "trim")]
-        public bool RecordTrim;
+        public bool Transcribe;
 
-        [JsonProperty(propertyName: "transcribe")]
-        public bool RecordTranscribe;
-
-        [JsonProperty(propertyName: "beep")]
-        public bool RecordBeep;
+        public bool Beep;
 
         [JsonProperty(propertyName: "digit-stop")]
-        public string RecordDigitStop;
+        public string DigitStop;
 
         // Use with `TriggerKind.Play` and `TriggerKind.Say`
-        [JsonProperty(propertyName: "loop")]
-        public int PlayLoop;
+        public int Loop;
 
-        // Use with `TriggerKind.Pause`
-        [JsonProperty(propertyName: "length")]
-        public int PauseLength;
+        // Use with `TriggerKind.Pause` and `TriggerKind.Record`
+        public int Length;
 
         // Use with `TriggerKind.Dial`
         [JsonProperty(propertyName: "phone-number")]
-        public int DialPhoneNumber;
+        public int PhoneNumber;
 
         // Use with `TriggerKind.Activity`
         [JsonProperty(propertyName: "delay-in-seconds")]
-        public int ActivityDelayInSeconds;
+        public int DelayInSeconds;
 
         // Use with `TriggerKind.Prompt`
-        [JsonProperty(propertyName: "digits")]
-        public string PromptDigits;
+        public string Digits;
 
-        [JsonProperty(propertyName: "speech")]
-        public string PromptSpeech;
+        public string Speech;
 
         // Use with `TriggerKind.Gather`
-        [JsonProperty(propertyName: "input")]
-        public List<string> GatherInput;
-
-        [JsonProperty(propertyName: "timeout")]
-        public int GatherTimeout;
+        public List<string> Input;
 
         [JsonProperty(propertyName: "dtmf-digit-count")]
-        public int GatherDtmfDigitCount;
+        public int DtmfDigitCount;
 
         [JsonProperty(propertyName: "dtmf-digit-stop")]
-        public string GatherDtmfDigitStop;
+        public string DtmfDigitStop;
 
         [JsonProperty(propertyName: "voice-template")]
         public VoiceTemplateResource VoiceTemplate;

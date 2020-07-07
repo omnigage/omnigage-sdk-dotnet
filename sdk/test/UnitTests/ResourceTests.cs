@@ -70,7 +70,6 @@ namespace Tests.UnitTests
             Assert.AreEqual(trigger.Id, "1");
             Assert.AreEqual(trigger.Kind, "play");
             Assert.AreEqual(trigger.OnEvent, "voice-machine");
-            Assert.AreEqual(trigger.ToString(), triggerResponse);
 
             EnvelopeResource envelope = new EnvelopeResource();
             envelope.PhoneNumber = "+11111111111";
