@@ -1,0 +1,80 @@
+﻿[
+  {
+    "Request": {
+      "Method": "POST",
+      "URI": "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/text-messages",
+      "RequestHeaders": {
+        "Authorization": "Basic <redacted>",
+        "X-Account-Key": "sandbox"
+      },
+      "ContentHeaders": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "86"
+      },
+      "Body": "{\"data\":{\"type\":\"text-messages\",\"attributes\":{\"body\":\"Sample body\",\"is-draft\":false}}}"
+    },
+    "Response": {
+      "Status": {
+        "Code": 201,
+        "Message": "CREATED"
+      },
+      "ResponseHeaders": {
+        "Connection": "keep-alive",
+        "Access-Control-Allow-Origin": "*",
+        "Date": "Tue, 07 Jul 2020 18:37:10 GMT",
+        "Server": "nginx/1.16.1",
+        "X-Deploy-Version": "208068e0a2922f918f2a1de0aa35b30d47daa2df",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 5d23f86132595aa6fb73880c63f21745.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "MSP50-C1",
+        "X-Amz-Cf-Id": "99-dxnsaZsvbJUjsNn-ubYxYtlsfyBXnM_ZKncuxpbStrfzOYOZfXA=="
+      },
+      "ContentHeaders": {
+        "Content-Type": "application/json",
+        "Content-Length": "490"
+      },
+      "Body": "{\"data\":{\"type\":\"text-messages\",\"id\":\"zcBj9TZtxnDrovPBLiXXUN\",\"attributes\":{\"is-draft\":false,\"created-at\":\"2020-07-07T18:37:10.518000+00:00\",\"updated-at\":\"2020-07-07T18:37:10.518009+00:00\",\"meta\":{},\"body\":\"Sample body\"},\"relationships\":{\"contact\":{\"data\":null},\"files\":{\"data\":[]},\"text-template\":{\"data\":null},\"envelope\":{\"data\":null},\"created-by\":{\"data\":{\"type\":\"memberships\",\"id\":\"vrRoJ5kieg4JcATs2r8wdc\"}},\"updated-by\":{\"data\":{\"type\":\"memberships\",\"id\":\"vrRoJ5kieg4JcATs2r8wdc\"}}}}}\n",
+      "HttpVersion": "1.1"
+    },
+    "RecordedAt": "2020-07-07T13:37:10.800963-05:00"
+  },
+  {
+    "Request": {
+      "Method": "POST",
+      "URI": "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/texts",
+      "RequestHeaders": {
+        "Authorization": "Basic <redacted>",
+        "X-Account-Key": "sandbox"
+      },
+      "ContentHeaders": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "417"
+      },
+      "Body": "{\"data\":{\"type\":\"texts\",\"attributes\":{\"to\":\"+14076413749\"},\"relationships\":{\"text-message\":{\"data\":{\"id\":\"zcBj9TZtxnDrovPBLiXXUN\",\"type\":\"text-messages\"}},\"phone-number\":{\"data\":{\"id\":\"GncieHvbCKfMYXmeycoWZm\",\"type\":\"phone-numbers\"}}}},\"included\":[{\"id\":\"zcBj9TZtxnDrovPBLiXXUN\",\"type\":\"text-messages\",\"attributes\":{\"body\":\"Sample body\",\"is-draft\":false},\"relationships\":{\"uploads\":{\"data\":[]},\"files\":{\"data\":[]}}}]}"
+    },
+    "Response": {
+      "Status": {
+        "Code": 201,
+        "Message": "CREATED"
+      },
+      "ResponseHeaders": {
+        "Connection": "keep-alive",
+        "Access-Control-Allow-Origin": "*",
+        "Date": "Tue, 07 Jul 2020 18:37:11 GMT",
+        "Server": "nginx/1.16.1",
+        "X-Deploy-Version": "208068e0a2922f918f2a1de0aa35b30d47daa2df",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 5d23f86132595aa6fb73880c63f21745.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "MSP50-C1",
+        "X-Amz-Cf-Id": "zd1e6kXKsLyZ6gocgeX_kN3sAY-q57ig0zE16INnVCzu0YOjggnHMQ=="
+      },
+      "ContentHeaders": {
+        "Content-Type": "application/json",
+        "Content-Length": "913"
+      },
+      "Body": "{\"data\":{\"type\":\"texts\",\"id\":\"KvxkWVHc79MqRkLSTBgyLV\",\"attributes\":{\"from\":\"+13217326379\",\"to\":\"+14076413749\",\"created-at\":\"2020-07-07T18:37:11.045574+00:00\",\"updated-at\":\"2020-07-07T18:37:11.071200+00:00\",\"direction\":\"outbound\",\"status\":\"queued\",\"meta\":{},\"callback\":null,\"callback-include\":null},\"relationships\":{\"text-message\":{\"data\":{\"type\":\"text-messages\",\"id\":\"zcBj9TZtxnDrovPBLiXXUN\"}},\"contact\":{\"data\":null},\"envelope\":{\"data\":null},\"result\":{\"data\":null},\"results\":{\"links\":{\"related\":\"https://dvfoa3pu2rxx6.cloudfront.net/api/v1/text-results?filter[text.id]=KvxkWVHc79MqRkLSTBgyLV\"}},\"phone-number\":{\"data\":{\"type\":\"phone-numbers\",\"id\":\"GncieHvbCKfMYXmeycoWZm\"}},\"service-profile\":{\"data\":{\"type\":\"service-profiles\",\"id\":\"6tKqzaUcok6YsUrXYmU4u2\"}},\"created-by\":{\"data\":{\"type\":\"memberships\",\"id\":\"vrRoJ5kieg4JcATs2r8wdc\"}},\"updated-by\":{\"data\":{\"type\":\"memberships\",\"id\":\"vrRoJ5kieg4JcATs2r8wdc\"}}}}}\n",
+      "HttpVersion": "1.1"
+    },
+    "RecordedAt": "2020-07-07T13:37:11.196437-05:00"
+  }
+]
