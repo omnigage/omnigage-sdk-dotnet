@@ -66,16 +66,16 @@ namespace Tests.IntegrationTests
 
             // Define human trigger
             TriggerResource triggerHumanInstance = new TriggerResource();
-            triggerHumanInstance.Kind = "play";
-            triggerHumanInstance.OnEvent = "voice-human";
+            triggerHumanInstance.Kind = TriggerKind.Play;
+            triggerHumanInstance.OnEvent = TriggerOnEvent.VoiceHuman;
             triggerHumanInstance.Activity = activity;
             triggerHumanInstance.VoiceTemplate = humanRecording;
             await triggerHumanInstance.Create();
 
             // Define machine trigger
             TriggerResource triggerMachineInstance = new TriggerResource();
-            triggerMachineInstance.Kind = "play";
-            triggerMachineInstance.OnEvent = "voice-machine";
+            triggerMachineInstance.Kind = TriggerKind.Play;
+            triggerMachineInstance.OnEvent = TriggerOnEvent.VoiceMachine;
             triggerMachineInstance.Activity = activity;
             triggerMachineInstance.VoiceTemplate = machineRecording;
             await triggerMachineInstance.Create();
