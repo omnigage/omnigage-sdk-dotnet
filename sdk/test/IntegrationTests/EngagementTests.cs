@@ -167,7 +167,7 @@ namespace Tests.IntegrationTests
 
             string tokenKey = "key";
             string tokenSecret = "secret";
-            string accountKey = "firstbank";
+            string accountKey = "sandbox";
             string host = "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/";
 
             Client.Init(tokenKey, tokenSecret, accountKey, host, client);
