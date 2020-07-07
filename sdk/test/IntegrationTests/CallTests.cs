@@ -23,7 +23,7 @@ namespace Tests.IntegrationTests
 
             CallResource call = new CallResource();
             call.To = "+18332676094";
-            call.Action = CallResource.DIAL;
+            call.Action = CallAction.Dial;
 
             await call.Create();
         }
@@ -44,7 +44,7 @@ namespace Tests.IntegrationTests
 
             CallResource parentCall = new CallResource();
             parentCall.To = "+18332676094";
-            parentCall.Action = CallResource.DIAL;
+            parentCall.Action = CallAction.Dial;
 
             await parentCall.Create();
 
@@ -62,7 +62,7 @@ namespace Tests.IntegrationTests
 
             CallResource childCall = new CallResource();
             childCall.To = "+14076413749";
-            childCall.Action = CallResource.DIAL;
+            childCall.Action = CallAction.Dial;
             childCall.ParentCall = parentCall;
             childCall.CallerId = new CallerIdResource
             {
@@ -89,7 +89,7 @@ namespace Tests.IntegrationTests
             CallResource call = new CallResource();
             call.From = "+18332676094";
             call.To = "+14076413749";
-            call.Action = CallResource.DIAL;
+            call.Action = CallAction.Dial;
             call.CallerId = new CallerIdResource
             {
                 Id = "yL9vQaWrSqg5W8EFEpE6xZ"

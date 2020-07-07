@@ -4,23 +4,26 @@ using Omnigage.Util;
 
 namespace Omnigage.Resources
 {
+    public class CallAction
+    {
+        public const string Dial = "dial";
+        public const string Hangup = "hangup";
+        public const string Answer = "answer";
+        public const string Decline = "decline";
+        public const string Hold = "hold";
+        public const string Record = "record";
+        public const string Play = "play";
+        public const string PlayDrop = "play-drop";
+        public const string VoicemailDrop = "voicemail-drop";
+        public const string Transfer = "transfer";
+        public const string Conference = "conference";
+    }
+
     /// <summary>
     /// Resource: `/calls` - https://omnigage.docs.apiary.io/#reference/call-resources/call-collection
     /// </summary>
     public class CallResource : Adapter
     {
-        public const string DIAL = "dial";
-        public const string HANGUP = "hangup";
-        public const string ANSWER = "answer";
-        public const string DECLINE = "decline";
-        public const string HOLD = "hold";
-        public const string RECORD = "record";
-        public const string PLAY = "play";
-        public const string PLAY_DROP = "play-drop";
-        public const string VOICEMAIL_DROP = "voicemail-drop";
-        public const string TRANSFER = "transfer";
-        public const string CONFERENCE = "conference";
-
         public override string Type { get; } = "calls";
 
         public string From { get; set; }

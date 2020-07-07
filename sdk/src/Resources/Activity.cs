@@ -4,16 +4,19 @@ using Omnigage.Util;
 
 namespace Omnigage.Resources
 {
+    public class ActivityKind
+    {
+        public const string Voice = "voice";
+        public const string Text = "text";
+        public const string Email = "email";
+        public const string Dial = "dial";
+    }
+
     /// <summary>
     /// Resource: `/activities` - https://omnigage.docs.apiary.io/#reference/engagement-resources/activity-collection
     /// </summary>
     public class ActivityResource : Adapter
     {
-        public const string VOICE = "voice";
-        public const string TEXT = "text";
-        public const string EMAIL = "email";
-        public const string DIAL = "dial";
-
         public override string Type { get; } = "activities";
 
         public string Name;

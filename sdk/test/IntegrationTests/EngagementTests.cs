@@ -31,7 +31,7 @@ namespace Tests.IntegrationTests
 
             ActivityResource activity = new ActivityResource();
             activity.Name = "Voice Blast";
-            activity.Kind = "voice";
+            activity.Kind = ActivityKind.Voice;
             activity.Engagement = engagement;
             activity.CallerId = new CallerIdResource
             {
@@ -128,7 +128,7 @@ namespace Tests.IntegrationTests
 
             ActivityResource activity = new ActivityResource();
             activity.Name = "Email Blast";
-            activity.Kind = ActivityResource.EMAIL;
+            activity.Kind = ActivityKind.Email;
             activity.Engagement = engagement;
             activity.EmailTemplate = emailTemplate;
             activity.EmailId = new EmailIdResource
@@ -186,7 +186,7 @@ namespace Tests.IntegrationTests
 
             ActivityResource activity = new ActivityResource();
             activity.Name = "Text Blast";
-            activity.Kind = ActivityResource.TEXT;
+            activity.Kind = ActivityKind.Text;
             activity.Engagement = engagement;
             activity.TextTemplate = textTemplate;
             activity.PhoneNumber = new PhoneNumberResource
