@@ -9,7 +9,7 @@ Available NuGet: https://www.nuget.org/packages/Omnigage.SDK/
 
     CallResource call = new CallResource();
     call.To = "+11111111111";
-    call.Action = CallResource.DIAL;
+    call.Action = CallAction.Dial;
 
     await call.Create();
 ```
