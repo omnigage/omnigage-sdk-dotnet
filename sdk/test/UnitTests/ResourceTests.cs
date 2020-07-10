@@ -29,7 +29,7 @@ namespace Tests.UnitTests
 
             var httpClient = mockHttp.ToHttpClient();
 
-            Client.Init("key", "secret", "example", "http://localhost/api/", httpClient);
+            Client.Init("key", "secret", "http://localhost/api/", httpClient);
 
             EngagementResource engagement = new EngagementResource();
             engagement.Name = "Example";

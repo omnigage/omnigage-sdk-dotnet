@@ -76,7 +76,7 @@ namespace Tests.UnitTests
             var client = mockHttp.ToHttpClient();
             client.BaseAddress = new Uri("http://localhost/api/");
 
-            Client.Init("key", "secret", "example", "http://localhost/api/", client);
+            Client.Init("key", "secret", "http://localhost/api/", client);
 
             await fixture.Create();
 
@@ -98,7 +98,7 @@ namespace Tests.UnitTests
             var client = mockHttp.ToHttpClient();
             client.BaseAddress = new Uri("http://localhost/api/");
 
-            Client.Init("key", "secret", "example", "http://localhost/api/", client);
+            Client.Init("key", "secret", "http://localhost/api/", client);
 
             await fixture.Create();
 

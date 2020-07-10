@@ -154,7 +154,6 @@ namespace Omnigage.Util
             };
 
             request.Headers.Add("Authorization", "Basic " + Client.Auth.Authorization);
-            request.Headers.Add("X-Account-Key", Client.AccountKey);
 
             if (contentType != null)
             {

@@ -16,10 +16,9 @@ namespace Tests.IntegrationTests
 
             string tokenKey = "key";
             string tokenSecret = "secret";
-            string accountKey = "sandbox";
             string host = "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/";
 
-            Client.Init(tokenKey, tokenSecret, accountKey, host, client);
+            Client.Init(tokenKey, tokenSecret, host, client);
 
             CallResource call = new CallResource();
             call.To = "+18332676094";
@@ -36,10 +35,9 @@ namespace Tests.IntegrationTests
 
             string tokenKey = "key";
             string tokenSecret = "secret";
-            string accountKey = "sandbox";
             string host = "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/";
 
-            Client.Init(tokenKey, tokenSecret, accountKey, host, client);
+            Client.Init(tokenKey, tokenSecret, host, client);
             Client.IsTesting = true;
 
             CallResource parentCall = new CallResource();
@@ -80,10 +78,9 @@ namespace Tests.IntegrationTests
 
             string tokenKey = "key";
             string tokenSecret = "secret";
-            string accountKey = "sandbox";
             string host = "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/";
 
-            Client.Init(tokenKey, tokenSecret, accountKey, host, client);
+            Client.Init(tokenKey, tokenSecret, host, client);
             Client.IsTesting = true;
 
             CallResource call = new CallResource();

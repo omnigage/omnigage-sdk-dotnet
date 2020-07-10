@@ -18,10 +18,9 @@ namespace Tests.IntegrationTests
 
             string tokenKey = "key";
             string tokenSecret = "secret";
-            string accountKey = "sandbox";
             string host = "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/";
 
-            Client.Init(tokenKey, tokenSecret, accountKey, host, client);
+            Client.Init(tokenKey, tokenSecret, host, client);
 
             EngagementResource engagement = new EngagementResource();
             engagement.Name = "Example Voice Blast";
@@ -109,10 +108,9 @@ namespace Tests.IntegrationTests
 
             string tokenKey = "key";
             string tokenSecret = "secret";
-            string accountKey = "sandbox";
             string host = "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/";
 
-            Client.Init(tokenKey, tokenSecret, accountKey, host, client);
+            Client.Init(tokenKey, tokenSecret, host, client);
 
             EngagementResource engagement = new EngagementResource();
             engagement.Name = "Example Email Blast";
@@ -167,10 +165,9 @@ namespace Tests.IntegrationTests
 
             string tokenKey = "key";
             string tokenSecret = "secret";
-            string accountKey = "sandbox";
             string host = "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/";
 
-            Client.Init(tokenKey, tokenSecret, accountKey, host, client);
+            Client.Init(tokenKey, tokenSecret, host, client);
 
             EngagementResource engagement = new EngagementResource();
             engagement.Name = "Example Text Blast";

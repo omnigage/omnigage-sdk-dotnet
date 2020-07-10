@@ -16,10 +16,9 @@ namespace Tests.IntegrationTests
 
             string tokenKey = "key";
             string tokenSecret = "secret";
-            string accountKey = "sandbox";
             string host = "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/";
 
-            Client.Init(tokenKey, tokenSecret, accountKey, host, client);
+            Client.Init(tokenKey, tokenSecret, host, client);
 
             TextMessageResource textMessage = new TextMessageResource();
             textMessage.Body = "Sample body";
@@ -45,10 +44,9 @@ namespace Tests.IntegrationTests
 
             string tokenKey = "key";
             string tokenSecret = "secret";
-            string accountKey = "sandbox";
             string host = "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/";
 
-            Client.Init(tokenKey, tokenSecret, accountKey, host, client);
+            Client.Init(tokenKey, tokenSecret, host, client);
 
             TextTemplateResource textTemplate = new TextTemplateResource();
             textTemplate.Name = "Text Template";

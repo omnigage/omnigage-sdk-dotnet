@@ -16,10 +16,9 @@ namespace Tests.IntegrationTests
 
             string tokenKey = "key";
             string tokenSecret = "secret";
-            string accountKey = "sandbox";
             string host = "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/";
 
-            Client.Init(tokenKey, tokenSecret, accountKey, host, client);
+            Client.Init(tokenKey, tokenSecret, host, client);
 
             EmailMessageResource emailMessage = new EmailMessageResource();
             emailMessage.Subject = "Ahoy";
@@ -46,10 +45,9 @@ namespace Tests.IntegrationTests
 
             string tokenKey = "key";
             string tokenSecret = "secret";
-            string accountKey = "sandbox";
             string host = "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/";
 
-            Client.Init(tokenKey, tokenSecret, accountKey, host, client);
+            Client.Init(tokenKey, tokenSecret, host, client);
 
             EmailTemplateResource emailTemplate = new EmailTemplateResource();
             emailTemplate.Subject = "Ahoy";
