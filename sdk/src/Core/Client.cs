@@ -1,7 +1,6 @@
 ﻿using System.Net.Http;
-using Omnigage.Auth;
 
-namespace Omnigage
+namespace Omnigage.Core
 {
     public class Client
     {
@@ -12,7 +11,7 @@ namespace Omnigage
         public static bool IsTesting { get; set; }
         public static int TestRequestIncremental { get; set; }
 
-        private Client() {}
+        private Client() { }
 
         public static void Init(string tokenKey, string tokenSecret, string host = null, HttpClient httpClient = null)
         {

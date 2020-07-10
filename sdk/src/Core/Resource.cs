@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 using JsonApiSerializer;
 using AutoMapper;
 
-namespace Omnigage.Util
+namespace Omnigage.Core
 {
     /// <summary>
     /// Adapter for faciliating serializing model instances and making requests.
@@ -132,7 +132,7 @@ namespace Omnigage.Util
                 payload = new StringContent(content, Encoding.UTF8, "application/json");
             }
 
-            
+
             if (Client.IsTesting)
             {
                 Client.TestRequestIncremental++;

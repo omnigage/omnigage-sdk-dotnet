@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using NUnit.Framework;
-using Omnigage;
-using Omnigage.Resources;
+using Omnigage.Core;
+using Omnigage.Resource;
 using Scotch;
 
 namespace Tests.IntegrationTests

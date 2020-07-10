@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
-using Omnigage.Util;
+using Omnigage.Core;
 
-namespace Omnigage.Resources
+namespace Omnigage.Resource
 {
     /// <summary>
     /// Resource: `/email-messages` - https://omnigage.docs.apiary.io/#reference/email-resources/email-message-collection/retrieve-email-messages

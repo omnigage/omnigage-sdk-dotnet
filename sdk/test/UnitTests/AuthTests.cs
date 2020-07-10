@@ -1,5 +1,6 @@
 using NUnit.Framework;
-using Omnigage.Auth;
+using Omnigage.Core;
+using Omnigage.Resource;
 
 namespace Tests.UnitTests
 {

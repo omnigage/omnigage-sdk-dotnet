@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
-using Omnigage.Util;
+using Omnigage.Core;
 
-namespace Omnigage.Resources
+namespace Omnigage.Resource
 {
     /// <summary>
     /// Resource: `/files` - https://omnigage.docs.apiary.io/#reference/media-resources/file

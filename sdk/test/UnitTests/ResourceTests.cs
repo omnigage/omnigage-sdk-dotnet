@@ -3,8 +3,8 @@ using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using Omnigage;
-using Omnigage.Resources;
+using Omnigage.Core;
+using Omnigage.Resource;
 using RichardSzalay.MockHttp;
 
 namespace Tests.UnitTests

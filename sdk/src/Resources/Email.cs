@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
-using Omnigage.Util;
+using Omnigage.Core;
 
-namespace Omnigage.Resources
+namespace Omnigage.Resource
 {
     /// <summary>
     /// Resource: `/emails` - https://omnigage.docs.apiary.io/#reference/email-resources/email-collection/retrieve-file

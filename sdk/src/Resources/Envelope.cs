@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 using JsonApiSerializer;
-using Omnigage.Util;
+using Omnigage.Core;
 
-namespace Omnigage.Resources
+namespace Omnigage.Resource
 {
     /// <summary>
     /// Resource: `/envelopes` - https://omnigage.docs.apiary.io/#reference/engagement-resources/envelope-collection

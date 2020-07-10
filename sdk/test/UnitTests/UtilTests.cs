@@ -4,8 +4,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using Omnigage;
-using Omnigage.Util;
+using Omnigage.Core;
+using Omnigage.Resource;
 using RichardSzalay.MockHttp;
 
 namespace Tests.UnitTests

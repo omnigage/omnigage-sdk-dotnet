@@ -1,6 +1,6 @@
-﻿using Omnigage.Util;
+﻿using Omnigage.Core;
 
-namespace Omnigage.Resources
+namespace Omnigage.Resource
 {
     /// <summary>
     /// Resource `/engagements` - https://omnigage.docs.apiary.io/#reference/engagement-resources

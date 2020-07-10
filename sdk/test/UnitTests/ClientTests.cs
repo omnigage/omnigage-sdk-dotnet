@@ -1,6 +1,7 @@
 ﻿using System.Net.Http;
 using NUnit.Framework;
-using Omnigage;
+using Omnigage.Core;
+using Omnigage.Resource;
 
 namespace Tests.UnitTests
 {

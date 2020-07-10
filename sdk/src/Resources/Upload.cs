@@ -9,9 +9,9 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using JsonApiSerializer;
 using HeyRed.Mime;
-using Omnigage.Util;
+using Omnigage.Core;
 
-namespace Omnigage.Resources
+namespace Omnigage.Resource
 {
     /// <summary>
     /// Resource: `/uploads` - https://omnigage.docs.apiary.io/#reference/media-resources/upload
