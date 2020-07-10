@@ -20,7 +20,7 @@ namespace Tests.IntegrationTests
 
             OmnigageClient.Init(tokenKey, tokenSecret, host, client);
 
-            CallResource call = new CallResource();
+            var call = new CallResource();
             call.To = "+18332676094";
             call.Action = CallAction.Dial;
 

@@ -7,9 +7,9 @@ Available NuGet: https://www.nuget.org/packages/Omnigage.SDK/
 1. Call a Single Number
 
 ```csharp
-    Client.Init("token-key", "token-secret");
+    OmnigageClient.Init("token-key", "token-secret");
 
-    CallResource call = new CallResource();
+    var call = new CallResource();
     call.To = "+11115551111";
 
     await call.Create();
@@ -18,9 +18,9 @@ Available NuGet: https://www.nuget.org/packages/Omnigage.SDK/
 2. Call Two Numbers and Connect
 
 ```csharp
-    Client.Init("token-key", "token-secret");
+    OmnigageClient.Init("token-key", "token-secret");
 
-    CallResource call = new CallResource();
+    var call = new CallResource();
     call.From = "+11115550000";
     call.To = "+11115551111";
     call.CallerId = new CallerIdResource
@@ -34,14 +34,14 @@ Available NuGet: https://www.nuget.org/packages/Omnigage.SDK/
 3. Send a Text Message
 
 ```csharp
-    Client.Init("token-key", "token-secret");
+    OmnigageClient.Init("token-key", "token-secret");
 
-    TextMessageResource textMessage = new TextMessageResource();
+    var textMessage = new TextMessageResource();
     textMessage.Body = "Sample body";
 
     await textMessage.Create();
 
-    TextResource text = new TextResource();
+    var text = new TextResource();
     text.To = "+11115551111";
     text.TextMessage = textMessage;
     text.PhoneNumber = new PhoneNumberResource
@@ -55,15 +55,15 @@ Available NuGet: https://www.nuget.org/packages/Omnigage.SDK/
 4. Send an Email
 
 ```csharp
-    Client.Init("token-key", "token-secret");
+    OmnigageClient.Init("token-key", "token-secret");
 
-    EmailMessageResource emailMessage = new EmailMessageResource();
+    var emailMessage = new EmailMessageResource();
     emailMessage.Subject = "Hello";
     emailMessage.Body = "Sample body";
 
     await emailMessage.Create();
 
-    EmailResource email = new EmailResource();
+    var email = new EmailResource();
     email.To = "demo@omnigage.com";
     email.EmailMessage = emailMessage;
     email.EmailId = new EmailIdResource
