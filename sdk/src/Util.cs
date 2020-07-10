@@ -37,11 +37,7 @@ namespace Omnigage.Util
         {
             string payload = this.Serialize();
             string response = await PostRequest(this.Type, payload);
-            Type type = this.GetType();
-
-            object instance = JsonConvert.DeserializeObject(response, type, new JsonApiSerializerSettings());
-
-            this.CopyProperties(instance);
+            this.LoadResponse(response);
         }
 
         /// <summary>
@@ -51,11 +47,7 @@ namespace Omnigage.Util
         {
             string payload = this.Serialize();
             string response = await PatchRequest($"{this.Type}/{this.Id}", payload);
-            Type type = this.GetType();
-
-            object instance = JsonConvert.DeserializeObject(response, type, new JsonApiSerializerSettings());
-
-            this.CopyProperties(instance);
+            this.LoadResponse(response);
         }
 
         /// <summary>
@@ -166,10 +158,23 @@ namespace Omnigage.Util
         }
 
         /// <summary>
+        /// Convert raw JSON response to loaded properties on instance.
+        /// </summary>
+        /// <param name="response"></param>
+        protected void LoadResponse(string response)
+        {
+            Type type = this.GetType();
+
+            object instance = JsonConvert.DeserializeObject(response, type, new JsonApiSerializerSettings());
+
+            this.CopyProperties(instance);
+        }
+
+        /// <summary>
         /// Copy source properties to current instance.
         /// </summary>
         /// <param name="source"></param>
-        public void CopyProperties(object source)
+        protected void CopyProperties(object source)
         {
             Type type = this.GetType();
 
