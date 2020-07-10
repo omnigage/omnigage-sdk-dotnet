@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using JsonApiSerializer;
 using Newtonsoft.Json;
 using Omnigage.Runtime;
 
@@ -84,7 +85,7 @@ namespace Omnigage.Resource
 
         // Use with `TriggerKind.Activity`
         [JsonProperty(propertyName: "delay-in-seconds")]
-        public int DelayInSeconds;
+        public int DelayInSeconds = 1;
 
         // Use with `TriggerKind.Prompt`
         public string Digits;
@@ -110,5 +111,15 @@ namespace Omnigage.Resource
         public List<TriggerResource> Children { get; set; }
 
         public ConferenceResource Conference;
+
+        public override string Serialize()
+        {
+            var settings = new JsonApiSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            };
+
+            return JsonConvert.SerializeObject(this, settings);
+        }
     }
 }
