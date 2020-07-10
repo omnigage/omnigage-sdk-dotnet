@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Text;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using JsonApiSerializer;
@@ -36,7 +34,7 @@ namespace Omnigage.Runtime
         public virtual async Task Create()
         {
             string payload = this.Serialize();
-            string response = await PostRequest(this.Type, payload);
+            string response = await Client.PostRequest(this.Type, payload);
             this.LoadResponse(response);
         }
 
@@ -46,7 +44,7 @@ namespace Omnigage.Runtime
         public virtual async Task Update()
         {
             string payload = this.Serialize();
-            string response = await PatchRequest($"{this.Type}/{this.Id}", payload);
+            string response = await Client.PatchRequest($"{this.Type}/{this.Id}", payload);
             this.LoadResponse(response);
         }
 
@@ -63,98 +61,12 @@ namespace Omnigage.Runtime
         /// </summary>
         public virtual async Task Find(string id)
         {
-            string response = await GetRequest($"{this.Type}/{id}");
+            string response = await Client.GetRequest($"{this.Type}/{id}");
             Type type = this.GetType();
 
             object instance = JsonConvert.DeserializeObject(response, type, new JsonApiSerializerSettings());
 
             this.CopyProperties(instance);
-        }
-
-        /// <summary>
-        /// Create a GET request to the Omnigage API and return an object for retrieving tokens
-        /// </summary>
-        /// <param name="uri"></param>
-        /// <returns>JObject</returns>
-        public static async Task<string> GetRequest(string uri)
-        {
-            return await SendClientRequest("GET", uri);
-        }
-
-        /// <summary>
-        /// Create a POST request to the Omnigage API and return an object for retrieving tokens
-        /// </summary>
-        /// <param name="uri"></param>
-        /// <param name="content"></param>
-        /// <returns>JObject</returns>
-        public static async Task<string> PostRequest(string uri, string content)
-        {
-            return await SendClientRequest("POST", uri, content);
-        }
-
-
-        /// <summary>
-        /// Create a PATCH request to the Omnigage API and return an object for retrieving tokens
-        /// </summary>
-        /// <param name="uri"></param>
-        /// <param name="content"></param>
-        /// <returns>JObject</returns>
-        public static async Task<string> PatchRequest(string uri, string content)
-        {
-            return await SendClientRequest("PATCH", uri, content);
-        }
-
-        /// <summary>
-        /// Create a bulk request to the Omnigage API and return an object
-        /// </summary>
-        /// <param name="uri"></param>
-        /// <param name="content"></param>
-        /// <returns>IRestResponse</returns>
-        public static async Task<string> PostBulkRequest(string uri, string content)
-        {
-            return await SendClientRequest("POST", uri, content, "application/vnd.api+json;ext=bulk");
-        }
-
-        /// <summary>
-        /// Send a request using the Omnigage client.
-        /// </summary>
-        /// <param name="httpMethod"></param>
-        /// <param name="uri"></param>
-        /// <param name="content"></param>
-        /// <param name="contentType"></param>
-        /// <returns></returns>
-        public static async Task<string> SendClientRequest(string httpMethod, string uri, string content = null, string contentType = null)
-        {
-            StringContent payload = null;
-
-            if (content != null)
-            {
-                payload = new StringContent(content, Encoding.UTF8, "application/json");
-            }
-
-
-            if (Client.IsTesting)
-            {
-                Client.TestRequestIncremental++;
-                uri += $"?test_request_number={Client.TestRequestIncremental}";
-            }
-
-            var method = new HttpMethod(httpMethod);
-            var request = new HttpRequestMessage(method, Client.Host + uri)
-            {
-                Content = payload
-            };
-
-            request.Headers.Add("Authorization", "Basic " + Client.Auth.Authorization);
-
-            if (contentType != null)
-            {
-                request.Content.Headers.TryAddWithoutValidation("Content-Type", contentType);
-            }
-
-            HttpResponseMessage response = await Client.HttpClient.SendAsync(request);
-
-            return await response.Content.ReadAsStringAsync();
         }
 
         /// <summary>

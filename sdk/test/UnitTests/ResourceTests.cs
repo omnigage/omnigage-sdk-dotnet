@@ -3,8 +3,8 @@ using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using Omnigage;
 using Omnigage.Resource;
-using Omnigage.Runtime;
 using RichardSzalay.MockHttp;
 
 namespace Tests.UnitTests
@@ -29,7 +29,7 @@ namespace Tests.UnitTests
 
             var httpClient = mockHttp.ToHttpClient();
 
-            Client.Init("key", "secret", "http://localhost/api/", httpClient);
+            OmnigageClient.Init("key", "secret", "http://localhost/api/", httpClient);
 
             EngagementResource engagement = new EngagementResource();
             engagement.Name = "Example";

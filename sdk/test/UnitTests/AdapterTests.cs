@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using NUnit.Framework;
+using Omnigage;
 using Omnigage.Runtime;
 using RichardSzalay.MockHttp;
 
@@ -75,7 +76,7 @@ namespace Tests.UnitTests
             var client = mockHttp.ToHttpClient();
             client.BaseAddress = new Uri("http://localhost/api/");
 
-            Client.Init("key", "secret", "http://localhost/api/", client);
+            OmnigageClient.Init("key", "secret", "http://localhost/api/", client);
 
             await fixture.Create();
 
@@ -97,7 +98,7 @@ namespace Tests.UnitTests
             var client = mockHttp.ToHttpClient();
             client.BaseAddress = new Uri("http://localhost/api/");
 
-            Client.Init("key", "secret", "http://localhost/api/", client);
+            OmnigageClient.Init("key", "secret", "http://localhost/api/", client);
 
             await fixture.Create();
 

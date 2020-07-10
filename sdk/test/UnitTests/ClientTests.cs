@@ -1,5 +1,6 @@
 ﻿using System.Net.Http;
 using NUnit.Framework;
+using Omnigage;
 using Omnigage.Runtime;
 
 namespace Tests.UnitTests
@@ -9,7 +10,7 @@ namespace Tests.UnitTests
         [Test]
         public void TestDefaultProps()
         {
-            Client.Init("key", "secret");
+            OmnigageClient.Init("key", "secret");
 
             Assert.AreEqual(Client.Host, "https://api.omnigage.io/api/v1/");
             Assert.IsInstanceOf<HttpClient>(Client.HttpClient);
@@ -22,7 +23,7 @@ namespace Tests.UnitTests
             string tokenSecret = "secret";
             string host = "http://localhost/api/";
 
-            Client.Init(tokenKey, tokenSecret, host);
+            OmnigageClient.Init(tokenKey, tokenSecret, host);
 
             Assert.AreEqual(Client.Host, host);
             Assert.AreEqual(Client.Auth.Authorization, "a2V5OnNlY3JldA==");

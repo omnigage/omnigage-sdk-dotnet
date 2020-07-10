@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using Omnigage;
 using Omnigage.Resource;
 using Omnigage.Runtime;
 using Scotch;
@@ -19,7 +20,7 @@ namespace Tests.IntegrationTests
             string tokenSecret = "secret";
             string host = "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/";
 
-            Client.Init(tokenKey, tokenSecret, host, client);
+            OmnigageClient.Init(tokenKey, tokenSecret, host, client);
 
             EngagementResource engagement = new EngagementResource();
             engagement.Name = "Example Voice Blast";
@@ -92,7 +93,7 @@ namespace Tests.IntegrationTests
             envelopes.Add(envelope);
 
             // Populate engagement queue
-            await Adapter.PostBulkRequest("envelopes", EnvelopeResource.SerializeBulk(envelopes));
+            await OmnigageClient.PostBulkRequest("envelopes", EnvelopeResource.SerializeBulk(envelopes));
 
             // Schedule engagement for processing
             engagement.Status = "scheduled";
@@ -109,7 +110,7 @@ namespace Tests.IntegrationTests
             string tokenSecret = "secret";
             string host = "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/";
 
-            Client.Init(tokenKey, tokenSecret, host, client);
+            OmnigageClient.Init(tokenKey, tokenSecret, host, client);
 
             EngagementResource engagement = new EngagementResource();
             engagement.Name = "Example Email Blast";
@@ -149,7 +150,7 @@ namespace Tests.IntegrationTests
             envelopes.Add(envelope);
 
             // Populate engagement queue
-            await Adapter.PostBulkRequest("envelopes", EnvelopeResource.SerializeBulk(envelopes));
+            await OmnigageClient.PostBulkRequest("envelopes", EnvelopeResource.SerializeBulk(envelopes));
 
             // Schedule engagement for processing
             engagement.Status = "scheduled";
@@ -166,7 +167,7 @@ namespace Tests.IntegrationTests
             string tokenSecret = "secret";
             string host = "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/";
 
-            Client.Init(tokenKey, tokenSecret, host, client);
+            OmnigageClient.Init(tokenKey, tokenSecret, host, client);
 
             EngagementResource engagement = new EngagementResource();
             engagement.Name = "Example Text Blast";
@@ -206,7 +207,7 @@ namespace Tests.IntegrationTests
             envelopes.Add(envelope);
 
             // Populate engagement queue
-            await Adapter.PostBulkRequest("envelopes", EnvelopeResource.SerializeBulk(envelopes));
+            await Client.PostBulkRequest("envelopes", EnvelopeResource.SerializeBulk(envelopes));
 
             // Schedule engagement for processing
             engagement.Status = "scheduled";

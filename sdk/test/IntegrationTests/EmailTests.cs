@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using NUnit.Framework;
+using Omnigage;
 using Omnigage.Resource;
-using Omnigage.Runtime;
 using Scotch;
 
 namespace Tests.IntegrationTests
@@ -18,7 +18,7 @@ namespace Tests.IntegrationTests
             string tokenSecret = "secret";
             string host = "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/";
 
-            Client.Init(tokenKey, tokenSecret, host, client);
+            OmnigageClient.Init(tokenKey, tokenSecret, host, client);
 
             EmailMessageResource emailMessage = new EmailMessageResource();
             emailMessage.Subject = "Ahoy";
@@ -47,7 +47,7 @@ namespace Tests.IntegrationTests
             string tokenSecret = "secret";
             string host = "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/";
 
-            Client.Init(tokenKey, tokenSecret, host, client);
+            OmnigageClient.Init(tokenKey, tokenSecret, host, client);
 
             EmailTemplateResource emailTemplate = new EmailTemplateResource();
             emailTemplate.Subject = "Ahoy";
