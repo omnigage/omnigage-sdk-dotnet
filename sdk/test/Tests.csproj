@@ -13,15 +13,34 @@
 </PackageReference>
     <PackageReference Include="RichardSzalay.MockHttp" Version="6.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
+    <PackageReference Include="Scotch" Version="0.1.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\omnigage.csproj" />
+    <ProjectReference Include="..\src\Omnigage.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-      <Content Include="Serialized\**">
+      <Content Include="Media\**">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
+  </ItemGroup>
+  <ItemGroup>
+      <Content Include="UnitTests\Serialized\**">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+  </ItemGroup>
+  <ItemGroup>
+      <Content Include="IntegrationTests\Cassettes\**">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="IntegrationTests\" />
+    <Folder Include="IntegrationTests\Cassettes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="appsettings.json" />
+    <None Remove="IntegrationTests\TestCassette.json" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,80 @@
+﻿[
+  {
+    "Request": {
+      "Method": "POST",
+      "URI": "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/email-messages",
+      "RequestHeaders": {
+        "Authorization": "Basic <redacted>",
+        "X-Account-Key": "sandbox"
+      },
+      "ContentHeaders": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "104"
+      },
+      "Body": "{\"data\":{\"type\":\"email-messages\",\"attributes\":{\"subject\":\"Ahoy\",\"body\":\"Sample body\",\"is-draft\":false}}}"
+    },
+    "Response": {
+      "Status": {
+        "Code": 201,
+        "Message": "CREATED"
+      },
+      "ResponseHeaders": {
+        "Connection": "keep-alive",
+        "Access-Control-Allow-Origin": "*",
+        "Date": "Mon, 06 Jul 2020 20:51:43 GMT",
+        "Server": "nginx/1.16.1",
+        "X-Deploy-Version": "208068e0a2922f918f2a1de0aa35b30d47daa2df",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 f9a30196f92d97ac1f9de5de3070baa8.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "MSP50-C1",
+        "X-Amz-Cf-Id": "z5ik2c3IJAp7oV2-IBUvlgo8UkXQ5kATB2a8bNRFeNeCa-zQcVkRFg=="
+      },
+      "ContentHeaders": {
+        "Content-Type": "application/json",
+        "Content-Length": "509"
+      },
+      "Body": "{\"data\":{\"type\":\"email-messages\",\"id\":\"Pg6uXdfuhFwTsk9QnYobJ2\",\"attributes\":{\"subject\":\"Ahoy\",\"is-draft\":false,\"created-at\":\"2020-07-06T20:51:43.670921+00:00\",\"updated-at\":\"2020-07-06T20:51:43.670928+00:00\",\"meta\":{},\"body\":\"Sample body\"},\"relationships\":{\"contact\":{\"data\":null},\"email-template\":{\"data\":null},\"files\":{\"data\":[]},\"envelope\":{\"data\":null},\"created-by\":{\"data\":{\"type\":\"memberships\",\"id\":\"vrRoJ5kieg4JcATs2r8wdc\"}},\"updated-by\":{\"data\":{\"type\":\"memberships\",\"id\":\"vrRoJ5kieg4JcATs2r8wdc\"}}}}}\n",
+      "HttpVersion": "1.1"
+    },
+    "RecordedAt": "2020-07-06T15:51:43.800067-05:00"
+  },
+  {
+    "Request": {
+      "Method": "POST",
+      "URI": "https://dvfoa3pu2rxx6.cloudfront.net/api/v1/emails",
+      "RequestHeaders": {
+        "Authorization": "Basic <redacted>",
+        "X-Account-Key": "sandbox"
+      },
+      "ContentHeaders": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Length": "435"
+      },
+      "Body": "{\"data\":{\"type\":\"emails\",\"attributes\":{\"to\":\"demo@omnigage.com\"},\"relationships\":{\"email-message\":{\"data\":{\"id\":\"Pg6uXdfuhFwTsk9QnYobJ2\",\"type\":\"email-messages\"}},\"email-id\":{\"data\":{\"id\":\"NbXW9TCHax9zfAeDhaY2bG\",\"type\":\"email-ids\"}}}},\"included\":[{\"id\":\"Pg6uXdfuhFwTsk9QnYobJ2\",\"type\":\"email-messages\",\"attributes\":{\"subject\":\"Ahoy\",\"body\":\"Sample body\",\"is-draft\":false},\"relationships\":{\"uploads\":{\"data\":[]},\"files\":{\"data\":[]}}}]}"
+    },
+    "Response": {
+      "Status": {
+        "Code": 201,
+        "Message": "CREATED"
+      },
+      "ResponseHeaders": {
+        "Connection": "keep-alive",
+        "Access-Control-Allow-Origin": "*",
+        "Date": "Mon, 06 Jul 2020 20:51:44 GMT",
+        "Server": "nginx/1.16.1",
+        "X-Deploy-Version": "208068e0a2922f918f2a1de0aa35b30d47daa2df",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 f9a30196f92d97ac1f9de5de3070baa8.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "MSP50-C1",
+        "X-Amz-Cf-Id": "Kkjaxwo2sTyskWh9no5QadIVCsLVVZi8dUSDroxUU6abAuAq0XW3vg=="
+      },
+      "ContentHeaders": {
+        "Content-Type": "application/json",
+        "Content-Length": "908"
+      },
+      "Body": "{\"data\":{\"type\":\"emails\",\"id\":\"qTp7gFy68fssHtnW6unsWh\",\"attributes\":{\"from\":\"staging@omnigageapp.com\",\"to\":\"demo@omnigage.com\",\"cc\":[],\"bcc\":[],\"created-at\":\"2020-07-06T20:51:44.127431+00:00\",\"updated-at\":\"2020-07-06T20:51:44.174003+00:00\",\"direction\":\"outbound\",\"status\":\"queued\",\"meta\":{},\"callback\":null,\"callback-include\":null},\"relationships\":{\"email-message\":{\"data\":{\"type\":\"email-messages\",\"id\":\"Pg6uXdfuhFwTsk9QnYobJ2\"}},\"email-id\":{\"data\":{\"type\":\"email-ids\",\"id\":\"NbXW9TCHax9zfAeDhaY2bG\"}},\"contact\":{\"data\":null},\"envelope\":{\"data\":null},\"result\":{\"data\":{\"type\":\"email-results\",\"id\":\"f4zEBLGV9RVi337ZmBgsSY\"}},\"results\":{\"links\":{\"related\":\"https://dvfoa3pu2rxx6.cloudfront.net/api/v1/email-results?filter[email.id]=qTp7gFy68fssHtnW6unsWh\"}},\"created-by\":{\"data\":{\"type\":\"memberships\",\"id\":\"vrRoJ5kieg4JcATs2r8wdc\"}},\"updated-by\":{\"data\":{\"type\":\"memberships\",\"id\":\"vrRoJ5kieg4JcATs2r8wdc\"}}}}}\n",
+      "HttpVersion": "1.1"
+    },
+    "RecordedAt": "2020-07-06T15:51:44.191595-05:00"
+  }
+]

@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using Omnigage.Resources;
+using Omnigage;
+using Omnigage.Resource;
 using RichardSzalay.MockHttp;
 
-namespace UnitTests
+namespace Tests.UnitTests
 {
     public class ResourceTests
     {
@@ -15,10 +15,10 @@ namespace UnitTests
         async public Task TestVoiceEngagement()
         {
             var mockHttp = new MockHttpMessageHandler();
-            var engagementResponse = File.ReadAllText("Serialized/ResourceTestsEngagementResponse.json");
-            var activityResponse = File.ReadAllText("Serialized/ResourceTestsActivityResponse.json");
-            var triggerResponse = File.ReadAllText("Serialized/ResourceTestsTriggerResponse.json");
-            var envelopeRequest = File.ReadAllText("Serialized/ResourceTestsEnvelopeBulkRequest.json");
+            var engagementResponse = File.ReadAllText("UnitTests/Serialized/ResourceTestsEngagementResponse.json");
+            var activityResponse = File.ReadAllText("UnitTests/Serialized/ResourceTestsActivityResponse.json");
+            var triggerResponse = File.ReadAllText("UnitTests/Serialized/ResourceTestsTriggerResponse.json");
+            var envelopeRequest = File.ReadAllText("UnitTests/Serialized/ResourceTestsEnvelopeBulkRequest.json");
 
             mockHttp.When(HttpMethod.Post, "http://localhost/api/engagements")
                 .Respond(System.Net.HttpStatusCode.Created, "application/json", engagementResponse);
@@ -27,52 +27,51 @@ namespace UnitTests
             mockHttp.When(HttpMethod.Post, "http://localhost/api/triggers")
                 .Respond(System.Net.HttpStatusCode.Created, "application/json", triggerResponse);
 
-            var client = mockHttp.ToHttpClient();
-            client.BaseAddress = new Uri("http://localhost/api/");
+            var httpClient = mockHttp.ToHttpClient();
 
-            EngagementModel engagement = new EngagementModel();
+            OmnigageClient.Init("key", "secret", "http://localhost/api/", httpClient);
+
+            EngagementResource engagement = new EngagementResource();
             engagement.Name = "Example";
             engagement.Direction = "outbound";
             engagement.Status = "scheduled";
 
-            await engagement.Create(client);
+            await engagement.Create();
 
             Assert.AreEqual(engagement.Id, "1");
             Assert.AreEqual(engagement.ToString(), engagementResponse);
 
-            ActivityModel activity = new ActivityModel();
+            ActivityResource activity = new ActivityResource();
             activity.Name = "Voice Blast";
             activity.Kind = "voice";
             activity.Engagement = engagement;
-            activity.CallerId = new CallerIdModel
+            activity.CallerId = new CallerIdResource
             {
                 Id = "yL9vQaWrSqg5W8EFEpE6xZ"
             };
 
-            await activity.Create(client);
+            await activity.Create();
 
             Assert.AreEqual(activity.Id, "1");
             Assert.AreEqual(activity.Name, "Voice Blast");
             Assert.AreEqual(activity.Kind, "voice");
-            Assert.AreEqual(activity.ToString(), activityResponse);
 
-            TriggerModel trigger = new TriggerModel();
+            TriggerResource trigger = new TriggerResource();
             trigger.Kind = "play";
             trigger.OnEvent = "voice-machine";
             trigger.Activity = activity;
-            trigger.VoiceTemplate = new VoiceTemplateModel
+            trigger.VoiceTemplate = new VoiceTemplateResource
             {
                 Id = "RaF56o2r58hTKT7AYS9doj"
             };
 
-            await trigger.Create(client);
+            await trigger.Create();
 
             Assert.AreEqual(trigger.Id, "1");
             Assert.AreEqual(trigger.Kind, "play");
             Assert.AreEqual(trigger.OnEvent, "voice-machine");
-            Assert.AreEqual(trigger.ToString(), triggerResponse);
 
-            EnvelopeModel envelope = new EnvelopeModel();
+            EnvelopeResource envelope = new EnvelopeResource();
             envelope.PhoneNumber = "+11111111111";
             envelope.Engagement = engagement;
             envelope.Meta = new Dictionary<string, string>
@@ -81,17 +80,17 @@ namespace UnitTests
                 { "last-name", "Morgan" }
             };
 
-            List<EnvelopeModel> envelopes = new List<EnvelopeModel> { };
+            List<EnvelopeResource> envelopes = new List<EnvelopeResource> { };
             envelopes.Add(envelope);
 
-            string envelopesPayload = EnvelopeModel.SerializeBulk(envelopes);
+            string envelopesPayload = EnvelopeResource.SerializeBulk(envelopes);
             Assert.AreEqual(envelopesPayload, envelopeRequest);
         }
 
         [Test]
-        public void TestVoiceTemplateModel()
+        public void TestVoiceTemplateResource()
         {
-            VoiceTemplateModel instance = new VoiceTemplateModel();
+            VoiceTemplateResource instance = new VoiceTemplateResource();
 
             instance.Name = "Example";
             instance.Kind = "audio";
@@ -101,9 +100,9 @@ namespace UnitTests
         }
 
         [Test]
-        public void TestEngagementModel()
+        public void TestEngagementResource()
         {
-            EngagementModel instance = new EngagementModel();
+            EngagementResource instance = new EngagementResource();
 
             instance.Name = "Example";
             instance.Direction = "outbound";

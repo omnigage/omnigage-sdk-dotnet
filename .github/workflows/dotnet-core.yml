@@ -18,11 +18,11 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Install dependencies
-      working-directory: sdk/test/UnitTests
+      working-directory: sdk/test
       run: dotnet restore
     - name: Build
-      working-directory: sdk/test/UnitTests
+      working-directory: sdk/test
       run: dotnet build --configuration Release --no-restore
     - name: Test
-      working-directory: sdk/test/UnitTests
+      working-directory: sdk/test
       run: dotnet test --no-restore --verbosity normal

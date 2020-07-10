@@ -1,4 +1,4 @@
-﻿namespace Omnigage.Auth
+﻿namespace Omnigage.Runtime
 {
     /// <summary>
     /// Authentication and request context
@@ -7,8 +7,6 @@
     {
         public string TokenKey { get; set; }
         public string TokenSecret { get; set; }
-        public string Host { get; set; }
-        public string AccountKey { get; set; }
 
         /// <summary>
         /// Create Authorization token following RFC 2617 

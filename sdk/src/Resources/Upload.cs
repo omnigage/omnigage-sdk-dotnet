@@ -9,103 +9,14 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using JsonApiSerializer;
 using HeyRed.Mime;
-using Omnigage.Util;
+using Omnigage.Runtime;
 
-namespace Omnigage.Resources
+namespace Omnigage.Resource
 {
-    /// <summary>
-    /// Resource: `/voice-templates` - https://omnigage.docs.apiary.io/#reference/call-resources/voice-template
-    /// </summary>
-    public class VoiceTemplateModel : Adapter
-    {
-        public override string Type { get; } = "voice-templates";
-
-        public string Name { get; set; }
-
-        public string Kind { get; set; }
-
-        public UploadModel Upload { get; set; }
-
-        [JsonIgnore]
-        public string FilePath { get; set; }
-    }
-
-    /// <summary>
-    /// Resource `/engagements` - https://omnigage.docs.apiary.io/#reference/engagement-resources
-    /// </summary>
-    public class EngagementModel : Adapter
-    {
-        public override string Type { get; } = "engagements";
-
-        public string Name;
-
-        public string Direction;
-
-        public string Status;
-    }
-
-    /// <summary>
-    /// Resource: `/activities` - https://omnigage.docs.apiary.io/#reference/engagement-resources/activity-collection
-    /// </summary>
-    public class ActivityModel : Adapter
-    {
-        public override string Type { get; } = "activities";
-
-        public string Name;
-
-        public string Kind;
-
-        public EngagementModel Engagement;
-
-        [JsonProperty(propertyName: "caller-id")]
-        public CallerIdModel CallerId;
-    }
-
-    /// <summary>
-    /// Resource: `/triggers` - https://omnigage.docs.apiary.io/#reference/engagement-resources/trigger-collection
-    /// </summary>
-    public class TriggerModel : Adapter
-    {
-        public override string Type { get; } = "triggers";
-
-        public string Kind;
-
-        [JsonProperty(propertyName: "on-event")]
-        public string OnEvent;
-
-        [JsonProperty(propertyName: "voice-template")]
-        public VoiceTemplateModel VoiceTemplate;
-
-        public ActivityModel Activity;
-    }
-
-    /// <summary>
-    /// Resource: `/envelopes` - https://omnigage.docs.apiary.io/#reference/engagement-resources/envelope-collection
-    /// </summary>
-    public class EnvelopeModel : Adapter
-    {
-        public override string Type { get; } = "envelopes";
-
-        [JsonProperty(propertyName: "phone-number")]
-        public string PhoneNumber;
-
-        [JsonProperty(propertyName: "meta_prop")]
-        public Dictionary<string, string> Meta;
-
-        public EngagementModel Engagement;
-
-        public static string SerializeBulk(List<EnvelopeModel> records)
-        {
-            string payload = JsonConvert.SerializeObject(records, new JsonApiSerializerSettings());
-            // Work around `JsonApiSerializer` moving properties named "meta" above "attributes"
-            return payload.Replace("meta_prop", "meta");
-        }
-    }
-
     /// <summary>
     /// Resource: `/uploads` - https://omnigage.docs.apiary.io/#reference/media-resources/upload
     /// </summary>
-    public class UploadModel : Adapter
+    public class UploadResource : Adapter
     {
         public override string Type { get; } = "uploads";
 
@@ -142,22 +53,19 @@ namespace Omnigage.Resources
             }";
         }
 
-        public override async Task Create(HttpClient client)
+        public override async Task Create()
         {
             this.FileName = Path.GetFileName(this.FilePath);
-            this.FileSize = new System.IO.FileInfo(this.FilePath).Length;
+            this.FileSize = new FileInfo(this.FilePath).Length;
             this.MimeType = MimeTypesMap.GetMimeType(this.FileName);
 
-            await base.Create(client);
+            await base.Create();
 
-            using (var clientS3 = new HttpClient())
-            {
-                // Create multipart form including setting form data and file content
-                MultipartFormDataContent form = await this.CreateMultipartForm();
+            // Create multipart form including setting form data and file content
+            MultipartFormDataContent form = await this.CreateMultipartForm();
 
-                // Upload to S3
-                await this.PostS3Request(clientS3, form);
-            };
+            // Upload to S3
+            await this.PostS3Request(form);
         }
 
         /// <summary>
@@ -215,20 +123,26 @@ namespace Omnigage.Resources
         /// <param name="uploadInstance"></param>
         /// <param name="form"></param>
         /// <param name="url"></param>
-        async Task PostS3Request(HttpClient client, MultipartFormDataContent form)
+        async Task PostS3Request(MultipartFormDataContent form)
         {
+            var method = new HttpMethod("POST");
+            var request = new HttpRequestMessage(method, this.RequestUrl)
+            {
+                Content = form
+            };
+
             // Set each of the `upload` instance headers
             foreach (JObject header in this.RequestHeaders)
             {
                 foreach (KeyValuePair<string, JToken> prop in header)
                 {
-                    client.DefaultRequestHeaders.Add(prop.Key, (string)prop.Value);
+                    request.Headers.Add(prop.Key, (string)prop.Value);
                 }
             }
 
             // Make S3 request
-            HttpResponseMessage responseS3 = await client.PostAsync(this.RequestUrl, form);
-            string responseContent = await responseS3.Content.ReadAsStringAsync();
+            HttpResponseMessage responseS3 = await Client.HttpClient.SendAsync(request);
+            // string responseContent = await responseS3.Content.ReadAsStringAsync();
 
             if ((int)responseS3.StatusCode == 204)
             {
@@ -240,14 +154,6 @@ namespace Omnigage.Resources
                 throw new S3UploadFailed();
             }
         }
-    }
-
-    /// <summary>
-    /// Resource: `/caller-ids` - https://omnigage.docs.apiary.io/#reference/identity-resources/caller-id-collection
-    /// </summary>
-    public class CallerIdModel : Adapter
-    {
-        public override string Type { get; } = "caller-ids";
     }
 
     /// <summary>
