@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\omnigage.csproj" />
+    <ProjectReference Include="..\src\Omnigage.csproj" />
   </ItemGroup>
 
   <ItemGroup>
