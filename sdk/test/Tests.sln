@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests.csproj", "{A9527529-EEFA-4CE7-A72A-9C454B547952}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "omnigage", "..\src\omnigage.csproj", "{DA60D040-B43B-4788-97F8-52CE6C70291B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omnigage", "..\src\Omnigage.csproj", "{DA60D040-B43B-4788-97F8-52CE6C70291B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

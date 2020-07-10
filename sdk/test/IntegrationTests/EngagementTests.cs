@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using Omnigage.Core;
 using Omnigage.Resource;
+using Omnigage.Runtime;
 using Scotch;
 
 namespace Tests.IntegrationTests

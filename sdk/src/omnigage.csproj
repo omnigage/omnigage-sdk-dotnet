@@ -24,6 +24,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="Core\" />
+    <Folder Include="Runtime\" />
   </ItemGroup>
 </Project>

@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 using JsonApiSerializer;
 using AutoMapper;
 
-namespace Omnigage.Core
+namespace Omnigage.Runtime
 {
     /// <summary>
     /// Adapter for faciliating serializing model instances and making requests.

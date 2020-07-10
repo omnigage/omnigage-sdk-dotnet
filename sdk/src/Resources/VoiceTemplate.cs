@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Omnigage.Core;
+using Omnigage.Runtime;
 
 namespace Omnigage.Resource
 {

@@ -1,4 +1,4 @@
-﻿namespace Omnigage.Core
+﻿namespace Omnigage.Runtime
 {
     /// <summary>
     /// Authentication and request context

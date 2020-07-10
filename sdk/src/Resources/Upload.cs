@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using JsonApiSerializer;
 using HeyRed.Mime;
-using Omnigage.Core;
+using Omnigage.Runtime;
 
 namespace Omnigage.Resource
 {
