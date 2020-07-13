@@ -75,6 +75,14 @@ namespace Omnigage.Runtime
             return await ResponseHandler(response);
         }
 
+        /// <summary>
+        /// Handler for formulating HttpRequestMessage
+        /// </summary>
+        /// <param name="httpMethod"></param>
+        /// <param name="uri"></param>
+        /// <param name="content"></param>
+        /// <param name="contentType"></param>
+        /// <returns></returns>
         protected static HttpRequestMessage RequestHandler(string httpMethod, string uri, string content = null, string contentType = null)
         {
             StringContent payload = null;
@@ -107,6 +115,11 @@ namespace Omnigage.Runtime
             return request;
         }
 
+        /// <summary>
+        /// Response handler for throwing exceptions and converting response to a string
+        /// </summary>
+        /// <param name="response"></param>
+        /// <returns></returns>
         protected static async Task<string> ResponseHandler(HttpResponseMessage response)
         {
             switch ((int)response.StatusCode)
