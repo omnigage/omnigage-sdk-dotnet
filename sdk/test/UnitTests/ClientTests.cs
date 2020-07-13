@@ -1,5 +1,5 @@
-﻿using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Net;
+using System.Net.Http;
 using NUnit.Framework;
 using Omnigage;
 using Omnigage.Runtime;
@@ -33,12 +33,12 @@ namespace Tests.UnitTests
         }
 
         [Test]
-        public void TestUnauthorizedAsync()
+        public void TestUnauthorizedException()
         {
             var mockHttp = new MockHttpMessageHandler();
 
             mockHttp.When(HttpMethod.Post, "http://localhost/api/test")
-                .Respond(System.Net.HttpStatusCode.Unauthorized, "application/json", "invalid_client");
+                .Respond(HttpStatusCode.Unauthorized, "application/json", "invalid_client");
 
             var httpClient = mockHttp.ToHttpClient();
 
@@ -49,6 +49,25 @@ namespace Tests.UnitTests
             OmnigageClient.Init(tokenKey, tokenSecret, host, httpClient);
 
             Assert.ThrowsAsync<AuthException>(() => Client.SendClientRequest("POST", "test"));
+        }
+
+        [Test]
+        public void TestValidationException()
+        {
+            var mockHttp = new MockHttpMessageHandler();
+
+            mockHttp.When(HttpMethod.Post, "http://localhost/api/test")
+                .Respond(HttpStatusCode.BadRequest, "application/json", "");
+
+            var httpClient = mockHttp.ToHttpClient();
+
+            string tokenKey = "key";
+            string tokenSecret = "secret";
+            string host = "http://localhost/api/";
+
+            OmnigageClient.Init(tokenKey, tokenSecret, host, httpClient);
+
+            Assert.ThrowsAsync<ValidationException>(() => Client.SendClientRequest("POST", "test"));
         }
     }
 }
