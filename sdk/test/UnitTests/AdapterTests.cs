@@ -83,6 +83,7 @@ namespace Tests.UnitTests
             Assert.AreEqual(fixture.Id, "1");
         }
 
+#if NETCOREAPP3_1
         [Test]
         async public Task TestUpdate()
         {
@@ -106,5 +107,7 @@ namespace Tests.UnitTests
 
             await fixture.Update();
         }
+#endif
+
     }
 }
