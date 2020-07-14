@@ -10,8 +10,10 @@
 ```csharp
     OmnigageClient.Init("token-key", "token-secret");
 
-    var call = new CallResource();
-    call.To = "+11115551111";
+    var call = new CallResource
+    {
+        To = "+11115551111"
+    };
 
     await call.Create();
 ```
@@ -21,12 +23,14 @@
 ```csharp
     OmnigageClient.Init("token-key", "token-secret");
 
-    var call = new CallResource();
-    call.From = "+11115550000";
-    call.To = "+11115551111";
-    call.CallerId = new CallerIdResource
+    var call = new CallResource
     {
-        Id = "<insert-caller-id>"
+        From = "+11115550000",
+        To = "+11115551111",
+        CallerId = new CallerIdResource
+        {
+            Id = "<insert-caller-id>"
+        }
     };
 
     await call.Create();
@@ -37,17 +41,21 @@
 ```csharp
     OmnigageClient.Init("token-key", "token-secret");
 
-    var textMessage = new TextMessageResource();
-    textMessage.Body = "Sample body";
-
-    await textMessage.Create();
-
-    var text = new TextResource();
-    text.To = "+11115551111";
-    text.TextMessage = textMessage;
-    text.PhoneNumber = new PhoneNumberResource
+    var message = new TextMessageResource
     {
-        Id = "<insert-phone-number-id>"
+        Body = "Sample body"
+    };
+
+    await message.Create();
+
+    var text = new TextResource
+    {
+        To = "+11115551111",
+        TextMessage = message,
+        PhoneNumber = new PhoneNumberResource
+        {
+            Id = "<insert-phone-number-id>"
+        }
     };
 
     await text.Create();
@@ -58,18 +66,22 @@
 ```csharp
     OmnigageClient.Init("token-key", "token-secret");
 
-    var emailMessage = new EmailMessageResource();
-    emailMessage.Subject = "Hello";
-    emailMessage.Body = "Sample body";
-
-    await emailMessage.Create();
-
-    var email = new EmailResource();
-    email.To = "demo@omnigage.com";
-    email.EmailMessage = emailMessage;
-    email.EmailId = new EmailIdResource
+    var message = new EmailMessageResource
     {
-        Id = "<insert-email-id>"
+        Subject = "Hello",
+        Body = "Sample body"
+    };
+
+    await message.Create();
+
+    var email = new EmailResource
+    {
+        To = "demo@omnigage.com",
+        EmailMessage = message,
+        EmailId = new EmailIdResource
+        {
+            Id = "<insert-email-id>"
+        }
     };
 
     await email.Create();

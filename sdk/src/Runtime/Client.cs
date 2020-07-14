@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -67,6 +68,23 @@ namespace Omnigage.Runtime
         /// <returns></returns>
         public static async Task<string> SendClientRequest(string httpMethod, string uri, string content = null, string contentType = null)
         {
+            var request = RequestHandler(httpMethod, uri, content, contentType);
+
+            HttpResponseMessage response = await HttpClient.SendAsync(request);
+
+            return await ResponseHandler(response);
+        }
+
+        /// <summary>
+        /// Handler for formulating HttpRequestMessage
+        /// </summary>
+        /// <param name="httpMethod"></param>
+        /// <param name="uri"></param>
+        /// <param name="content"></param>
+        /// <param name="contentType"></param>
+        /// <returns></returns>
+        protected static HttpRequestMessage RequestHandler(string httpMethod, string uri, string content = null, string contentType = null)
+        {
             StringContent payload = null;
 
             if (content != null)
@@ -75,9 +93,9 @@ namespace Omnigage.Runtime
             }
 
 
-            if (Client.IsTesting)
+            if (IsTesting)
             {
-                Client.TestRequestIncremental++;
+                TestRequestIncremental++;
                 uri += $"?test_request_number={TestRequestIncremental}";
             }
 
@@ -94,9 +112,35 @@ namespace Omnigage.Runtime
                 request.Content.Headers.TryAddWithoutValidation("Content-Type", contentType);
             }
 
-            HttpResponseMessage response = await HttpClient.SendAsync(request);
+            return request;
+        }
+
+        /// <summary>
+        /// Response handler for throwing exceptions and converting response to a string
+        /// </summary>
+        /// <param name="response"></param>
+        /// <returns></returns>
+        protected static async Task<string> ResponseHandler(HttpResponseMessage response)
+        {
+            switch ((int)response.StatusCode)
+            {
+                case 400:
+                    throw new ValidationException();
+                case 401:
+                    throw new AuthException();
+            }
 
             return await response.Content.ReadAsStringAsync();
         }
     }
+
+    /// <summary>
+    /// Validation exception
+    /// </summary>
+    public class ValidationException : Exception { }
+
+    /// <summary>
+    /// Auth exception
+    /// </summary>
+    public class AuthException : Exception { }
 }
