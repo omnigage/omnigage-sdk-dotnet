@@ -6,8 +6,8 @@
     <PackageId>Omnigage.SDK</PackageId>
     <Authors>Omnigage</Authors>
     <Description>Omnigage SDK for .NET</Description>
-    <ReleaseVersion>1.1.0</ReleaseVersion>
-    <PackageVersion>1.1.1</PackageVersion>
+    <ReleaseVersion>1.2.0</ReleaseVersion>
+    <PackageVersion>1.2.0</PackageVersion>
     <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
   </PropertyGroup>
 
