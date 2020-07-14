@@ -6,9 +6,14 @@
     <PackageId>Omnigage.SDK</PackageId>
     <Authors>Omnigage</Authors>
     <Description>Omnigage SDK for .NET</Description>
+    <Copyright>Copyright © Omnigage</Copyright>
     <ReleaseVersion>1.2.0</ReleaseVersion>
     <PackageVersion>1.2.0</PackageVersion>
     <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/omnigage/omnigage-sdk-dotnet</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/omnigage/omnigage-sdk-dotnet</RepositoryUrl>
+    <PackageIconUrl>https://www.omnigage.io/assets/images/favicons/favicon-a3cdc535e3798fe6cc2feb8a8d339fa3.ico</PackageIconUrl>
+    <PackageTags>omnigage;calling;telephony;voice;sms;blasts;email;distribution;api;REST</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
