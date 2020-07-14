@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+
+### Changed
+
+### Fixed
+
+
+## [1.2.0] - 2020-07-14
+### Added
 - Added `ValidationException` when API returns a `400` and unit test coverage
 - Added `AuthException` when API returns a `401` and unit test coverage
 - Refactored `Client.SendClientRequest` to use `RequestHandler` and `ResponseHandler`
@@ -33,7 +41,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilities including adapter abstract for serialization and request handling
 - Initial scope focused around engagement creation for voice activities
 
-[Unreleased]: https://github.com/omnigage/omnigage-sdk-dotnet/compare/1.1.1...HEAD
+[Unreleased]: https://github.com/omnigage/omnigage-sdk-dotnet/compare/1.2.0...HEAD
+[1.2.0]: https://github.com/omnigage/omnigage-sdk-dotnet/compare/1.1.1...1.2.0
 [1.1.1]: https://github.com/omnigage/omnigage-sdk-dotnet/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/omnigage/omnigage-sdk-dotnet/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/omnigage/omnigage-sdk-dotnet/releases/tag/1.0.0
