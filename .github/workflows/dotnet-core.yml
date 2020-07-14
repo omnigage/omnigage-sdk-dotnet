@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: .NET Core
 
 on:
   push:
@@ -6,36 +6,23 @@ on:
   pull_request:
     branches: [ master ]
 
-env:
-  SOLUTION_FILE: sdk/test/Tests.sln
-  PACKAGE_PATH: 'sdk/test'
-
 jobs:
   build:
-    name: Build and deploy
-    runs-on: windows-latest
+
+    runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v2
-    
-    - name: Setup MSBuild path
-      uses: microsoft/setup-msbuild@v1.0.0
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
       with:
-        vs-version: "[16.4,16.6)"
-    
-    - name: Setup NuGet
-      uses: NuGet/setup-nuget@v1.0.2
-    
-    - name: Restore NuGet packages
-      run: nuget restore ${{ env.SOLUTION_FILE }}
-
+        dotnet-version: 3.1.101
+    - name: Install dependencies
+      working-directory: sdk/test
+      run: dotnet restore
     - name: Build
-      run: msbuild ${{ env.SOLUTION_FILE }} /p:Configuration=Release
-
-    - name: Publish to folder
-      run: msbuild ${{ env.SOLUTION_FILE }} /p:Configuration=Release /p:DeployOnBuild=true /t:WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=${{ env.PACKAGE_PATH }} /p:PackageAsSingleFile=false
-
-    - name: Publish artifacts
-      uses: actions/upload-artifact@v1.0.0
-      with:
-        name: Omnigage.SDK
-        path: ${{ env.PACKAGE_PATH }}
+      working-directory: sdk/test
+      run: dotnet build --configuration Release --no-restore
+    - name: Test
+      working-directory: sdk/test
+      run: dotnet test --no-restore --verbosity normal
