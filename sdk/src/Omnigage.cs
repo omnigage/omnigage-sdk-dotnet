@@ -7,11 +7,18 @@ namespace Omnigage
     {
         private OmnigageClient() { }
 
-        public static void Init(string tokenKey, string tokenSecret, string host = null, HttpClient httpClient = null)
+        public static void Init(string tokenKey, string tokenSecret = null, string host = null, HttpClient httpClient = null)
         {
             AuthContext auth = new AuthContext();
-            auth.TokenKey = tokenKey;
-            auth.TokenSecret = tokenSecret;
+            if (tokenSecret != null)
+            {
+                auth.TokenKey = tokenKey;
+                auth.TokenSecret = tokenSecret;
+            }
+            else
+            {
+                auth.JWT = tokenKey;
+            }
 
             if (host == null)
             {

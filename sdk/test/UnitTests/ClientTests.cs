@@ -28,7 +28,16 @@ namespace Tests.UnitTests
             OmnigageClient.Init(tokenKey, tokenSecret, host);
 
             Assert.AreEqual(Client.Host, host);
-            Assert.AreEqual(Client.Auth.Authorization, "a2V5OnNlY3JldA==");
+            Assert.AreEqual(Client.Auth.Authorization, "Basic a2V5OnNlY3JldA==");
+            Assert.IsInstanceOf<HttpClient>(Client.HttpClient);
+        }
+
+        [Test]
+        public void TestPropsJWT()
+        {
+            OmnigageClient.Init("token");
+
+            Assert.AreEqual(Client.Auth.Authorization, "Bearer token");
             Assert.IsInstanceOf<HttpClient>(Client.HttpClient);
         }
 
