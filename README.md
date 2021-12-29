@@ -3,6 +3,20 @@
 - NuGet package: https://www.nuget.org/packages/Omnigage.SDK/
 - Examples: https://github.com/omnigage/omnigage-sdk-examples
 
+## Authorization
+
+### API Token
+
+```csharp
+    OmnigageClient.Init("token-key", "token-secret");
+```
+
+### JWT Token
+
+```csharp
+    OmnigageClient.Init("token");
+```
+
 ## Samples
 
 1. Call a Single Number

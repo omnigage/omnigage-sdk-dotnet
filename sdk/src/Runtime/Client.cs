@@ -105,7 +105,7 @@ namespace Omnigage.Runtime
                 Content = payload
             };
 
-            request.Headers.Add("Authorization", "Basic " + Auth.Authorization);
+            request.Headers.Add("Authorization", Auth.Authorization);
 
             if (contentType != null)
             {

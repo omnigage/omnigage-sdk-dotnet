@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+## [1.3.0] - 2021-12-29
+### Added
+- Add support to `OmnigageClient.Init` for JWT tokens
+- Refactored `AuthContext` to support both Basic and JWT authentication
+- Added unit test coverage for JWT tokens
+- Updated NuGet packages
 
 ## [1.2.0] - 2020-07-14
 ### Added

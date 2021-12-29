@@ -18,14 +18,24 @@ namespace Tests.UnitTests
         }
 
         [Test]
-        public void TestAuthorization()
+        public void TestBasicAuthorization()
         {
             AuthContext auth = new AuthContext();
 
             auth.TokenKey = "key";
             auth.TokenSecret = "secret";
 
-            Assert.AreEqual(auth.Authorization, "a2V5OnNlY3JldA==");
+            Assert.AreEqual(auth.Authorization, "Basic a2V5OnNlY3JldA==");
+        }
+
+        [Test]
+        public void TestJWTAuthorization()
+        {
+            AuthContext auth = new AuthContext();
+
+            auth.JWT = "token";
+
+            Assert.AreEqual(auth.Authorization, "Bearer token");
         }
     }
 }
