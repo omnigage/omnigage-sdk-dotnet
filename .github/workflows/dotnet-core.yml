@@ -1,28 +1,24 @@
 name: Build and Test
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [push]
 
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET Core
+    - name: Setup dotnet
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.101
+        dotnet-version: '5.0.x'
     - name: Install dependencies
       working-directory: sdk/test
       run: dotnet restore
     - name: Build
       working-directory: sdk/test
       run: dotnet build --configuration Release --no-restore
-    - name: Test
+    - name: Test with the dotnet CLI
       working-directory: sdk/test
       run: dotnet test --no-restore --verbosity normal
