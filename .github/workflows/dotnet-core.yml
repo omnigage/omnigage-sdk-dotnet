@@ -12,15 +12,13 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '5.0.x'
-    - name: Install version
-      run: dotnet tool install --global dotnet-ef --version 3.1.0
+        dotnet-version: '3.1.x'
     - name: Install dependencies
       working-directory: sdk/test
-      run: dotnet-ef restore
+      run: dotnet restore
     - name: Build
       working-directory: sdk/test
-      run: dotnet-ef build --configuration Release --no-restore
+      run: dotnet build --configuration Release --no-restore
     - name: Test with the dotnet CLI
       working-directory: sdk/test
-      run: dotnet-ef test --no-restore --verbosity normal
+      run: dotnet test --no-restore --verbosity normal
