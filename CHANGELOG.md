@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Added support for Voice Link engagements
 - Added `TextVoice` and `EmailVoice` kinds to `Activity` resource
-- Added `cCallBackPhoneNumber`, `EmailMessage`, and `VoiceTemplate` to `Activity` resource
+- Added `CallBackPhoneNumber`, `EmailMessage`, and `VoiceTemplate` to `Activity` resource
 - Added test coverage
 - Updated GitHub workflow
 
