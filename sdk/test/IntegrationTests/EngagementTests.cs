@@ -239,6 +239,7 @@ namespace Tests.IntegrationTests
             EmailMessageResource emailMessage = new EmailMessageResource();
             emailMessage.Subject = "Email Message";
             emailMessage.Body = "Sample body";
+            emailMessage.IsDraft = true;
             await emailMessage.Create();
 
             UploadResource upload1 = new UploadResource
@@ -256,7 +257,7 @@ namespace Tests.IntegrationTests
             ActivityResource activity = new ActivityResource();
             activity.Name = "Email Voice";
             activity.Kind = ActivityKind.EmailVoice;
-            activity.CallbackPhoneNumber = "+11231231234";
+            activity.CallBackPhoneNumber = "+11231231234";
             activity.Engagement = engagement;
             activity.VoiceTemplate = recording;
             activity.EmailTemplate = emailTemplate;

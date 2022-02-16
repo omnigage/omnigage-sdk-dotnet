@@ -25,7 +25,8 @@ namespace Omnigage.Resource
 
         public string Kind;
 
-        public string CallbackPhoneNumber;
+        [JsonProperty(propertyName: "call-back-phone-number")]
+        public string CallBackPhoneNumber;
 
         public EngagementResource Engagement;
 
