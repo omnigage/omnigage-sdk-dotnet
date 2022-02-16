@@ -18,7 +18,7 @@ jobs:
       run: dotnet restore
     - name: Build
       working-directory: sdk/test
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build --configuration Release --no-restore --framework netcoreapp3.1
     - name: Test with the dotnet CLI
       working-directory: sdk/test
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test --no-restore --verbosity normal --framework netcoreapp3.1
