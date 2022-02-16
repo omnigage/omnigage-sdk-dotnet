@@ -8,7 +8,9 @@ namespace Omnigage.Resource
     {
         public const string Voice = "voice";
         public const string Text = "text";
+        public const string TextVoice = "text-voice";
         public const string Email = "email";
+        public const string EmailVoice = "email-voice";
         public const string Dial = "dial";
     }
 
@@ -22,6 +24,9 @@ namespace Omnigage.Resource
         public string Name;
 
         public string Kind;
+
+        [JsonProperty(propertyName: "call-back-phone-number")]
+        public string CallBackPhoneNumber;
 
         public EngagementResource Engagement;
 
@@ -37,8 +42,14 @@ namespace Omnigage.Resource
         [JsonProperty(propertyName: "email-template")]
         public EmailTemplateResource EmailTemplate;
 
+        [JsonProperty(propertyName: "email-message")]
+        public EmailMessageResource EmailMessage;
+
         [JsonProperty(propertyName: "text-template")]
         public TextTemplateResource TextTemplate;
+
+        [JsonProperty(propertyName: "voice-template")]
+        public VoiceTemplateResource VoiceTemplate;
 
         [JsonProperty(propertyName: "voice-templates")]
         public List<VoiceTemplateResource> VoiceTemplates { get; set; }

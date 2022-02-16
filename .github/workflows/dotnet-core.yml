@@ -1,10 +1,6 @@
 name: Build and Test
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [push]
 
 jobs:
   build:
@@ -13,16 +9,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET Core
+    - name: Setup dotnet
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.101
+        dotnet-version: '3.1.x'
     - name: Install dependencies
       working-directory: sdk/test
       run: dotnet restore
     - name: Build
       working-directory: sdk/test
-      run: dotnet build --configuration Release --no-restore
-    - name: Test
+      run: dotnet build --configuration Release --no-restore --framework netcoreapp3.1
+    - name: Test with the dotnet CLI
       working-directory: sdk/test
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test --no-restore --verbosity normal --framework netcoreapp3.1

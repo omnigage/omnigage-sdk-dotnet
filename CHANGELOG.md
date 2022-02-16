@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+## [1.4.0] - 2022-02-16
+### Added
+- Added support for Voice Link engagements
+- Added `TextVoice` and `EmailVoice` kinds to `Activity` resource
+- Added `cCallBackPhoneNumber`, `EmailMessage`, and `VoiceTemplate` to `Activity` resource
+- Added test coverage
+- Updated GitHub workflow
+
 ## [1.3.0] - 2021-12-29
 ### Added
 - Add support to `OmnigageClient.Init` for JWT tokens
